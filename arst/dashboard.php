@@ -4,7 +4,7 @@
 include("../connection/connect.php");
 error_reporting(0);
 session_start();
-if(empty($_SESSION["adm_id"]))
+if(empty($_SESSION["user_id"]))
 {
 	header('location:index.php');
 }
@@ -18,7 +18,7 @@ else
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Admin Panel</title>
+    <title>Restaurant Panel</title>
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
@@ -99,7 +99,7 @@ else
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i
                                     class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Nhà hàng</span></a>
+                                    class="hide-menu">Chi Nhánh</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">Danh sách chi nhánh</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
@@ -146,7 +146,7 @@ else
                 <div class="col-lg-12">
                     <div class="card card-outline-primary">
                         <div class="card-header">
-                            <h4 class="m-b-0 text-white">Admin Dashboard</h4>
+                            <h4 class="m-b-0 text-white">Restaurant Dashboard</h4>
                         </div>
                         <div class="row">
 

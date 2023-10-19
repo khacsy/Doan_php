@@ -114,7 +114,7 @@ if (isset($_POST['submit1'])) {
 			<input type="text" placeholder="username" name="username" />
 			<input type="password" placeholder="password" name="password" />
 			<input type="submit" name="submit" value="login" />
-			<p class="message">Not registered? <a href="#">Create an account</a>
+			<p class="message">Not registered? <a href="registration.php">Create an account</a>
 			</p>
 		</form>
 

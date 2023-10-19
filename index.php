@@ -24,6 +24,9 @@ session_start(); //start temp session until Logout/browser closed
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+    <!-- link chuong thon bao  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
 </head>
 
 <body class="home">
@@ -53,8 +56,30 @@ session_start(); //start temp session until Logout/browser closed
                         <?php
                     if(empty($_SESSION["user_id"])) // if user is not login
                         {
-                            echo '<li class="nav-item"><a href="login.php" class="nav-link active">Đăng Nhập</a> </li>
-                        <li class="nav-item"><a href="registration.php" class="nav-link active">Đăng Ký</a> </li>';
+                            echo '
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Đăng Nhập</a>
+                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                    <ul class="dropdown-user" style="
+                                    background-color: white !important;">
+                                    <li> <a class="dropdown-item" href="./arst/index.php">Restaurant</a> </li>
+                                    <li> <a class="dropdown-item" href="login.php"></i>User</a> </li>
+                                    
+                                    </ul>
+                                </div>
+                              </li>;
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle active" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Đăng Ký</a>
+                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                    <ul class="dropdown-user" style="
+                                    background-color: white !important;">
+                                    <li> <a class="dropdown-item" href="register.php"> Restaurant</a> </li>
+                                    <li> <a class="dropdown-item" href="registration.php"></i> User</a> </li>
+                                    
+                                    </ul>
+                                </div>
+                              </li>;
+                                ';
                         }
                     else
                         {
@@ -78,17 +103,19 @@ session_start(); //start temp session until Logout/browser closed
                         <li class="nav-item">
                             <form action="search.php" method="get">
                                 <input type="text" name="key" />
-                                <button type="submit" >Tìm kiếm</button>
+                                <button type="submit" >Tìm kiếm</button> <i class = "fas fa-bell thongbao" ></i>
+                                
                             </form>
-                            <!-- <div class="kqtimkiem">
-                                <span>Dê Nghĩa</span>
-                            </div> -->
+                            
                         </li>
+
+
                     </ul>
 
                 </div>
             </div>
         </nav>
+
         <!-- /.navbar -->
     </header>
     <!-- /.navbar -->

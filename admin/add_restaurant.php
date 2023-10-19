@@ -154,7 +154,7 @@ if (isset($_POST['submit'])) {
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_users.php">Danh sách tài
                                         khoản</a></li>
-                                <li><a href="add_users.php">Thêm tài khoản</a>
+                                <li><a href="add_users.php">Duyệt tài khoản</a>
                                 </li>
 
                             </ul>
@@ -165,16 +165,15 @@ if (isset($_POST['submit'])) {
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="add_restaurant.php">Thêm nhà
-                                        hàng</a></li>
+                                <li><a href="add_restaurant.php">Duyệt nhà hàng</a></li>
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Món ăn</span></a>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Doanh thu</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_menu.php">Danh sách món ăn</a>
+                                <li><a href="all_menu.php">Doanh thu nhà hàng</a>
                                 </li>
-                                <li><a href="add_menu.php">Thêm món ăn</a></li>
+                           
 
 
                             </ul>
@@ -182,10 +181,9 @@ if (isset($_POST['submit'])) {
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i class="fa fa-shopping-cart"
                                     aria-hidden="true"></i><span
-                                    class="hide-menu">đơn hàng</span></a>
+                                    class="hide-menu">Báo cáo</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
-                                <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
+                 
                             </ul>
                         </li>
 

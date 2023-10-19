@@ -45,20 +45,20 @@ if (isset($_POST['submit']))
         {
 
             //truy xuat du lieu trong database
-            $mql = "INSERT INTO users(username,f_name,l_name,email,phone,password,address,Role) VALUES('" . $_POST['username'] . "','" . $_POST['firstname'] . "','" . $_POST['lastname'] . "','" . $_POST['email'] . "','" . $_POST['phone'] . "','" . md5($_POST['password']) . "','" . $_POST['address'] . "','".'User'."')";
+            $mql = "INSERT INTO users(username,f_name,l_name,email,phone,password,address,Role) VALUES('" . $_POST['username'] . "','" . $_POST['firstname'] . "','" . $_POST['lastname'] . "','" . $_POST['email'] . "','" . $_POST['phone'] . "','" . md5($_POST['password']) . "','" . $_POST['address'] . "','".'RT'."')";
             mysqli_query($db, $mql);
             $success = "Tạo tài khoản thành công! <p>Bạn sẽ được trở về nới đăng nhập <span id='counter'>5</span> giây(s).</p>
       <script type='text/javascript'>
       function countdown() {
          var i = document.getElementById('counter');
          if (parseInt(i.innerHTML)<=0) {
-            location.href = 'login.php';
+            location.href = 'arst/index.php';
          }
          i.innerHTML = parseInt(i.innerHTML)-1;
       }
       setInterval(function(){ countdown(); },1000);
       </script>'";
-            header("refresh:5;url=login.php");
+            header("refresh:5;url=arst/index.php");
         }
     }
 

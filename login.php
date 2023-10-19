@@ -42,7 +42,7 @@ if(isset($_POST['submit']))   // neu ma button submit thi
 	
 	if(!empty($_POST["submit"]))   // Nếu không có giá trị rỗng trong form đăng nhập
      {
-	$loginquery ="SELECT * FROM users WHERE username='$username' && password='".md5($password)."'"; // Tạo truy vấn SQL để kiểm tra thông tin đăng nhập
+	$loginquery ="SELECT * FROM users WHERE username='$username' && password='".md5($password)."' && Role ='User'"; // Tạo truy vấn SQL để kiểm tra thông tin đăng nhập
 	$result=mysqli_query($db, $loginquery); // Thực hiện truy vấn SQL
 	$row=mysqli_fetch_array($result); // Lấy dữ liệu từ kết quả truy vấn
 	

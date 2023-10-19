@@ -97,12 +97,10 @@ if (isset($_POST['submit'])) {
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i
                                     class="fa fa-user f-s-20 color-warning"></i><span
-                                    class="hide-menu">Tài
-                                    khoản</span></a>
+                                    class="hide-menu">Doanh Thu</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_users.php">Danh sách tài
-                                        khoản</a></li>
-                                <li><a href="add_users.php">Thêm tài khoản</a>
+                                <li><a href="all_users.php">Nhà Hàng</a></li>
+                                <li><a href="add_users.php">Chi Nhánh</a>
                                 </li>
 
                             </ul>
@@ -110,8 +108,7 @@ if (isset($_POST['submit'])) {
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i
                                     class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Nhà
-                                    hàng</span></a>
+                                    class="hide-menu">Chi Nhánh</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">Danh sách nhà
                                         hàng</a></li>

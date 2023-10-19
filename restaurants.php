@@ -23,6 +23,8 @@ session_start();
     <link href="css/animate.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+     <!-- link chuong thon bao  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -73,7 +75,7 @@ session_start();
                         <li class="nav-item">
                             <form action="search.php" method="get">
                                 <input type="text" name="key" />
-                                <button type="submit" >Tìm kiếm</button>
+                                <button type="submit" >Tìm kiếm</button> <i class = "fas fa-bell"></i>
                             </form>
                         </li>
                     </ul>
