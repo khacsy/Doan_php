@@ -136,8 +136,7 @@ session_start();
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="add_restaurant.php">Thêm nhà
-                                        hàng</a></li>
+                                <li><a href="add_restaurant.php">Thêm Chi nhánh</a></li>
 
                             </ul>
                         </li>
@@ -160,6 +159,14 @@ session_start();
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
                             </ul>
                         </li>
 
@@ -214,7 +221,7 @@ session_start();
 
 
                                             <?php
-												$sql="SELECT * FROM restaurant order by rs_id desc";
+												$sql = "SELECT * FROM restaurant WHERE restaurant_id = " . $_SESSION["user_id"] . " ORDER BY rs_id DESC";
 												$query=mysqli_query($db,$sql);
 												
 													if(!mysqli_num_rows($query) > 0 )

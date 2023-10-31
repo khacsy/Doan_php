@@ -130,6 +130,14 @@ else
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
                             </ul>
                         </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>
@@ -160,7 +168,7 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from restaurant";
+                                            <h2><?php $sql="select * from restaurant where restaurant_id =". $_SESSION["user_id"];
 												$result=mysqli_query($db,$sql); 
 													$rws=mysqli_num_rows($result);
 													
@@ -181,18 +189,21 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from dishes";
-												$result=mysqli_query($db,$sql); 
-													$rws=mysqli_num_rows($result);
-													
-													echo $rws;?></h2>
+                                            <h2><?php 
+                                            $sql = "SELECT d.* FROM dishes d
+                                            JOIN restaurant r ON d.rs_id = r.rs_id
+                                            WHERE r.restaurant_id = " . $_SESSION["user_id"];
+                                            $result=mysqli_query($db,$sql); 
+                                                $rws=mysqli_num_rows($result);
+                                                
+                                                echo $rws;?></h2>
                                             <p class="m-b-0">Món Ăn</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-3">
+                            <!-- <div class="col-md-3">
                                 <div class="card p-30">
                                     <div class="media">
                                         <div
@@ -211,7 +222,7 @@ else
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="col-md-3">
                                 <div class="card p-30">
@@ -223,11 +234,11 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from users_orders";
+                                            <h2><?php $sql="select * from users_orders where restaurant_id =". $_SESSION["user_id"]. " AND status != 'closed'" ;
 												$result=mysqli_query($db,$sql); 
 													$rws=mysqli_num_rows($result);
 													
-													echo $rws;?></h2>
+													echo $rws;?></h2>   
                                             <p class="m-b-0">Tổng Đơn Đặt</p>
                                         </div>
                                     </div>
@@ -267,7 +278,7 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from users_orders WHERE status = 'in process' ";
+                                            <h2><?php $sql="select * from users_orders WHERE restaurant_id =". $_SESSION["user_id"]. " AND status = 'in process' ";
 												$result=mysqli_query($db,$sql); 
 													$rws=mysqli_num_rows($result);
 													
@@ -289,7 +300,7 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from users_orders WHERE status = 'closed' ";
+                                            <h2><?php $sql="select * from users_orders WHERE  restaurant_id =". $_SESSION["user_id"]. " AND status = 'closed' ";
 												$result=mysqli_query($db,$sql); 
 													$rws=mysqli_num_rows($result);
 													
@@ -313,7 +324,7 @@ else
                                         </div>
                                         <div
                                             class="media-body media-text-right">
-                                            <h2><?php $sql="select * from users_orders WHERE status = 'rejected' ";
+                                            <h2><?php $sql="select * from users_orders WHERE restaurant_id =". $_SESSION["user_id"]. " AND status = 'rejected' ";
                                         $result=mysqli_query($db,$sql); 
                                             $rws=mysqli_num_rows($result);
                                             
@@ -336,10 +347,15 @@ else
                                         <div
                                             class="media-body media-text-right">
                                             <h2><?php 
-                                        $result = mysqli_query($db, 'SELECT SUM(price) AS value_sum FROM users_orders WHERE status = "closed"'); 
+                                        $result = mysqli_query($db, 'SELECT SUM(price) AS value_sum FROM users_orders WHERE  restaurant_id ="'. $_SESSION["user_id"]. '" AND status = "closed"'); 
                                         $row = mysqli_fetch_assoc($result); 
                                         $sum = $row['value_sum'];
-                                        echo $sum;
+                                        if($sum > 0){
+                                            echo $sum;
+                                        }
+                                        else{
+                                            echo 0;
+                                        }
                                         ?></h2>
                                             <p class="m-b-0">Tổng Thu Nhập Được
                                             </p>

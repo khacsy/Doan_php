@@ -114,8 +114,7 @@ if (isset($_POST['submit'])) {
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="add_restaurant.php">Thêm nhà
-                                        hàng</a></li>
+                                <li><a href="add_restaurant.php">Thêm Chi nhánh</a></li>
 
                             </ul>
                         </li>
@@ -136,6 +135,14 @@ if (isset($_POST['submit'])) {
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
                             </ul>
                         </li>
                     </ul>

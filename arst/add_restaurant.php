@@ -21,42 +21,58 @@ if (isset($_POST['submit'])) {
                     <strong>All fields Must be Fillup!</strong>
                   </div>';
     } else {
-        $fname = $_FILES['file']['name'];
-        $temp = $_FILES['file']['tmp_name'];
-        $fsize = $_FILES['file']['size'];
-        $extension = pathinfo($fname, PATHINFO_EXTENSION);
-        $fnew = uniqid() . '.' . $extension;
-        $store = "Res_img/" . basename($fnew);
-
-        if (($extension == 'jpg' || $extension == 'png' || $extension == 'gif') && $fsize < 1000000) {
-            $stmt = $db->prepare("INSERT INTO restaurant(c_id, title, email, phone, url, o_hr, c_hr, o_days, address, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssssss", $c_name, $res_name, $email, $phone, $url, $o_hr, $c_hr, $o_days, $address, $fnew);
-            $stmt->execute();
-
-            if ($stmt->affected_rows > 0) {
-                move_uploaded_file($temp, $store);
-                $success = '<div class="alert alert-success alert-dismissible fade show">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        New Restaurant Added Successfully.
-                    </div>';
+        $statusUser = 0;
+        $roleUser = "RT";
+        $stmtCheckUser = $db->prepare("SELECT * FROM users WHERE u_id = ? AND Role = ? AND status = ?");
+        $stmtCheckUser->bind_param("sss", $_SESSION["user_id"],$roleUser, $statusUser);
+        $stmtCheckUser->execute();
+        $result = $stmtCheckUser->get_result();
+        if($result->num_rows > 0){
+            $fname = $_FILES['file']['name'];
+            $temp = $_FILES['file']['tmp_name'];
+            $fsize = $_FILES['file']['size'];
+            $extension = pathinfo($fname, PATHINFO_EXTENSION);
+            $fnew = uniqid() . '.' . $extension;
+            $store = "Res_img/" . basename($fnew);
+    
+            if (($extension == 'jpg' || $extension == 'png' || $extension == 'gif') && $fsize < 1000000) {
+                $status = "waiting"; 
+                $stmt = $db->prepare("INSERT INTO restaurant(restaurant_id, title, email, phone, url, o_hr, c_hr, o_days, address, image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssssssssss", $_SESSION["user_id"], $res_name, $email, $phone, $url, $o_hr, $c_hr, $o_days, $address, $fnew, $status); 
+                $stmt->execute();
+             
+                if ($stmt->affected_rows > 0) {
+                    move_uploaded_file($temp, $store);
+                    $success = '<div class="alert alert-success alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            New Restaurant Added Successfully.
+                        </div>';
+                } else {
+                    $error = '<div class="alert alert-danger alert-dismissible fade show">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    Something went wrong. Please try again later.
+                                </div>';
+                }
+                $stmt->close();
+            } elseif ($extension == '') {
+                $error = '<div class="alert alert-danger alert-dismissible fade show">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Select image</strong>
+                          </div>';
             } else {
                 $error = '<div class="alert alert-danger alert-dismissible fade show">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                Something went wrong. Please try again later.
-                            </div>';
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <strong>Invalid extension!</strong> PNG, JPG, GIF are accepted.
+                          </div>';
             }
-            $stmt->close();
-        } elseif ($extension == '') {
-            $error = '<div class="alert alert-danger alert-dismissible fade show">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Select image</strong>
-                      </div>';
-        } else {
-            $error = '<div class="alert alert-danger alert-dismissible fade show">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Invalid extension!</strong> PNG, JPG, GIF are accepted.
-                      </div>';
         }
+        else{
+            echo  '<div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>bạn không có quyền thêm nhà hàng</strong>
+            </div>';
+        }
+        $stmtCheckUser->close();
     }
 }
 ?>
@@ -167,8 +183,7 @@ if (isset($_POST['submit'])) {
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="add_restaurant.php">Thêm nhà
-                                        hàng</a></li>
+                                <li><a href="add_restaurant.php">Thêm Chi nhánh</a></li>
 
                             </ul>
                         </li>
@@ -190,6 +205,14 @@ if (isset($_POST['submit'])) {
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
                             </ul>
                         </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>
@@ -208,7 +231,7 @@ if (isset($_POST['submit'])) {
                 <div class="col-lg-12">
                     <div class="card card-outline-primary">
                         <div class="card-header">
-                            <h4 class="m-b-0 text-white">Thêm nhà hàng</h4>
+                            <h4 class="m-b-0 text-white">Thêm Chi nhánh</h4>
                         </div>
                         <div class="card-body">
                             <form action='' method='post' enctype="multipart/form-data">

@@ -10,35 +10,27 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Koji Food</title>
-    <!-- Bootstrap Core CSS -->
+    <title>All Orders</title>
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
+
 </head>
 
 <body class="fix-header fix-sidebar">
-    <!-- Preloader - style you can find in spinners.css -->
+
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none"
                 stroke-width="2" stroke-miterlimit="10" />
         </svg>
     </div>
-    <!-- Main wrapper  -->
+
     <div id="main-wrapper">
 
         <div class="header">
@@ -53,6 +45,8 @@ session_start();
                 <div class="navbar-collapse">
 
                     <ul class="navbar-nav mr-auto mt-md-0">
+
+
 
 
                     </ul>
@@ -92,7 +86,6 @@ session_start();
                             <div
                                 class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-
                                     <li><a href="logout.php"><i
                                                 class="fa fa-power-off"></i>
                                             Logout</a></li>
@@ -119,11 +112,10 @@ session_start();
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i
                                     class="fa fa-user f-s-20 color-warning"></i><span
-                                    class="hide-menu">Tài khoản</span></a>
+                                    class="hide-menu">Doanh Thu</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_users.php">Danh sách tài
-                                        khoản</a></li>
-                                <li><a href="confirm_restaurant.php">Duyệt tài khoản</a>
+                                <li><a href="all_users.php">Nhà Hàng</a></li>
+                                <li><a href="add_users.php">Chi Nhánh</a>
                                 </li>
 
                             </ul>
@@ -131,24 +123,25 @@ session_start();
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i
                                     class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Nhà hàng</span></a>
+                                    class="hide-menu">Chi Nhánh</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_restaurant.php">Danh sách nhà
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="confỉm_addrestaurant.php">Duyệt nhà hàng</a></li>
+                                <li><a href="add_restaurant.php">Thêm nhà
+                                        hàng</a></li>
 
                             </ul>
                         </li>
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i class="fa fa-cutlery"
                                     aria-hidden="true"></i><span
-                                    class="hide-menu">Doanh thu</span></a>
+                                    class="hide-menu">Món ăn</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="doanhthu_allres.php">Doanh thu nhà hàng</a>
+                                <li><a href="all_menu.php">Danh sách món ăn</a>
                                 </li>
-                         
+                                <li><a href="add_menu.php">Thêm món ăn</a></li>
 
 
                             </ul>
@@ -156,9 +149,18 @@ session_start();
                         <li> <a class="has-arrow  " href="#"
                                 aria-expanded="false"><i class="fa fa-shopping-cart"
                                     aria-hidden="true"></i><span
-                                    class="hide-menu">Báo cáo</span></a>
+                                    class="hide-menu">đơn hàng</span></a>
                             <ul aria-expanded="false" class="collapse">
-             
+                                <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
+                                <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
                             </ul>
                         </li>
 
@@ -168,97 +170,57 @@ session_start();
             </div>
 
         </div>
-        <!-- End Left Sidebar  -->
-        <!-- Page wrapper  -->
-        <div class="page-wrapper">
-            <!-- Bread crumb -->
 
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
+        <div class="page-wrapper">
+
+
+
             <div class="container-fluid">
-                <!-- Start Page Content -->
+
                 <div class="row">
                     <div class="col-12">
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Danh sách các nhà hàng
-                                </h4>
-                                <h6 class="card-subtitle">Export data to Copy,
-                                    CSV, Excel, PDF & Print</h6>
+
+                        <div class="col-lg-12">
+                            <div class="card card-outline-primary">
+                                <div class="card-header">
+                                    <h4 class="m-b-0 text-white">Danh sách đơn
+                                        hàng</h4>
+                                </div>
 
                                 <div class="table-responsive m-t-40">
-                                    <table id="example23"
-                                        class="display nowrap table table-hover table-striped table-bordered"
-                                        cellspacing="0" width="100%">
-                                        <thead>
+                                    <table id="myTable"
+                                        class="table table-bordered table-striped">
+                                        <thead class="thead-dark">
                                             <tr>
-                                                <th>Danh mục</th>
-                                                <th>Tên Nhà Hàng</th>
-                                                <th>Email</th>
-                                                <th>Số Điện Thoại</th>
-                                                <th>Url</th>
-                                                <th>Open Hrs</th>
-                                                <th>Close Hrs</th>
-                                                <th>Open Days</th>
+                                                <th>Tên khách hàng</th>
+                                                <th>SĐT</th>
                                                 <th>Địa chỉ</th>
-                                                <th>Store-Image</th>
-                                                <th>Date</th>
-                                                <th>Action</th>
+                                                <th>Tên Nhà Hàng</th>
+                                                <th>Số Lượt Đến</th>
 
                                             </tr>
                                         </thead>
-
                                         <tbody>
+                                        <?php
+                                            $sql = "SELECT u.phone as phone ,u.address as addresss ,  u.username as username , r.title as title,v.sum_visits as sum_visits  FROM total_visits AS v
+                                                    LEFT JOIN users AS u ON v.id_user = u.u_id 
+                                                    LEFT JOIN restaurant AS r ON v.id_restaurant = r.rs_id where r.restaurant_id = " . $_SESSION["user_id"];
+                                            $query = mysqli_query($db, $sql);
 
-
-                                            <?php
-												$sql="SELECT * FROM restaurant where status = 'ok' order by rs_id desc";
-												$query=mysqli_query($db,$sql);
-												
-													if(!mysqli_num_rows($query) > 0 )
-														{
-															echo '<td colspan="11"><center>No Srores-Data!</center></td>';
-														}
-													else
-														{				
-																	while($rows=mysqli_fetch_array($query))
-																		{
-																					
-																				$mql="SELECT * FROM res_category where c_id='".$rows['c_id']."'";
-																					$res=mysqli_query($db,$mql);
-																					$row=mysqli_fetch_array($res);
-																				
-																					echo ' <tr><td>'.$row['c_name'].'</td>
-																								<td>'.$rows['title'].'</td>
-																								<td>'.$rows['email'].'</td>
-																								<td>'.$rows['phone'].'</td>
-																								<td>'.$rows['url'].'</td>
-																								
-																								
-																								<td>'.$rows['o_hr'].'</td>
-																								<td>'.$rows['c_hr'].'</td>
-																								<td>'.$rows['o_days'].'</td>
-																								
-																								<td>'.$rows['address'].'</td>
-																								
-																								<td><div class="col-md-3 col-lg-8 m-b-10">
-																								<center><img src="Res_img/'.$rows['image'].'" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
-																								</div></td>
-																								
-																								<td>'.$rows['date'].'</td>
-																									 <td><a href="delete_stores.php?res_del='.$rows['rs_id'].'" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
-																									 <a href="update_restaurant.php?res_upd='.$rows['rs_id'].'" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="ti-settings"></i></a>
-																									</td></tr>';
-																					 
-																						
-																						
-																		}	
-														}
-												
-											
-											?>
-
+                                            if (!mysqli_num_rows($query) > 0) {
+                                                echo '<td colspan="8"><center>No Orders</center></td>';
+                                            } else {
+                                                while ($rows = mysqli_fetch_array($query)) {
+                                                    echo ' <tr>
+                                                            <td>' . $rows['username'] . '</td>
+                                                            <td>' . $rows['phone'] . '</td>
+                                                            <td>' . $rows['addresss'] . '</td>
+                                                            <td>' . $rows['title'] . '</td>
+                                                            <td>' . $rows['sum_visits'] . '</td>';
+                                                }
+                                            }
+                                            ?>                                       
                                         </tbody>
                                     </table>
                                 </div>
@@ -270,31 +232,23 @@ session_start();
             </div>
         </div>
     </div>
-    <!-- End PAge Content -->
+
     </div>
-    <!-- End Container fluid  -->
-    <!-- footer -->
+
+
     <footer class="footer"> © 2023 - Team Pixel </footer>
-    <!-- End footer -->
+
     </div>
-    <!-- End Page wrapper  -->
+
     </div>
-    <!-- End Wrapper -->
-    <!-- All Jquery -->
+
     <script src="js/lib/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
     <script src="js/jquery.slimscroll.js"></script>
-    <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
-    <!--stickey kit -->
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-
-
     <script src="js/lib/datatables/datatables.min.js"></script>
     <script
         src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
@@ -317,7 +271,7 @@ session_start();
     <script
         src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js">
     </script>
-    <script src="js/lib/datatables/datatables-init.js"></script>
+
 </body>
 
 </html>

@@ -21,10 +21,10 @@ if (strlen($_SESSION['user_id']) == 0) {
     function f2() {
       window.close();
     }
-    ser
+    
 
     function f3() {
-      window.print();
+      window.print(); 
     }
   </script>
 

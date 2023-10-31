@@ -153,6 +153,14 @@ session_start();
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
                             </ul>
                         </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
+                            </ul>
+                        </li>
 
                     </ul>
                 </nav>
@@ -170,8 +178,7 @@ session_start();
                         <div class="col-lg-12">
                             <div class="card card-outline-primary">
                                 <div class="card-header">
-                                    <h4 class="m-b-0 text-white">Danh sách tài
-                                        khoản</h4>
+                                    <h4 class="m-b-0 text-white">Doanh thu nhà hàng</h4>
                                 </div>
 
                                 <div class="table-responsive m-t-40">
@@ -179,41 +186,32 @@ session_start();
                                         class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Tên đăng nhập</th>
-                                                <th>Họ</th>
-                                                <th>Tên</th>
-                                                <th>Email</th>
-                                                <th>Số Điện Thoại</th>
-                                                <th>Địa Chỉ</th>
-                                                <th>Reg-Date</th>
-                                                <th>Action</th>
+                                                <th>Tên Nhà Hàng</th>
+                                                <th>Số lượng</th>
+                                                <th>Giảm giá</th>
+                                                <th>Thu nhập</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
 
 
                                             <?php
-                                            $sql = "SELECT * FROM users order by u_id desc";
+                                        
+                                            $sql = "SELECT * FROM users_orders WHERE restaurant_id = " . $_SESSION["user_id"] . " and status = 'closed' ORDER BY u_id DESC";
                                             $query = mysqli_query($db, $sql);
-
                                             if (!mysqli_num_rows($query) > 0) {
                                                 echo '<td colspan="7"><center>No Users</center></td>';
                                             } else {
                                                 while ($rows = mysqli_fetch_array($query)) {
-
-
-
-                                                    echo ' <tr><td>' . $rows['username'] . '</td>
-																								<td>' . $rows['f_name'] . '</td>
-																								<td>' . $rows['l_name'] . '</td>
-																								<td>' . $rows['email'] . '</td>
-																								<td>' . $rows['phone'] . '</td>
-																								<td>' . $rows['address'] . '</td>																								
-																								<td>' . $rows['date'] . '</td>
-																									 <td><a href="delete_users.php?user_del=' . $rows['u_id'] . '" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
-																									 <a href="update_users.php?user_upd=' . $rows['u_id'] . '" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
-																									</td></tr>';
+                                                    echo ' <tr><td>' . $rows['o_id'] . '</td>
+                                                        <td>' . $rows['u_id'] . '</td>
+                                                        <td>' . $rows['quantity'] . '</td>
+                                                        <td>' . $rows['price'] . '</td>                                                                                          
+                                                        </td></tr>';
+                                                        $totalPrice += $rows['price'];
                                                 }
+                                                echo '<tr><td colspan="3">Total Price:</td><td>' . $totalPrice . '.000</td></tr>';
                                             }
                                             ?>
                                         </tbody>

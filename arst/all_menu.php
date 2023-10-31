@@ -153,6 +153,14 @@ session_start();
                                 <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
                             </ul>
                         </li>
+                        <li> <a class="has-arrow  " href="#"
+                                aria-expanded="false"><i class="fa fa-shopping-cart"
+                                    aria-hidden="true"></i><span
+                                    class="hide-menu">Thống kê</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
 

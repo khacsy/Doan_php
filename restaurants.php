@@ -4,6 +4,7 @@
 include ("connection/connect.php");
 error_reporting(0);
 session_start();
+
 ?>
 
 <head>
@@ -156,9 +157,13 @@ session_start();
                         <div class="bg-gray restaurant-entry">
                             <div class="row">
                                 <?php $ress = mysqli_query($db, "select * from restaurant");
+                        
+                               
+                               
 while ($rows = mysqli_fetch_array($ress))
 {
-
+    
+  
     echo ' <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
 															<div class="entry-logo">
 																<a class="img-fluid" href="dishes.php?res_id=' . $rows['rs_id'] . '" > <img src="admin/Res_img/' . $rows['image'] . '" alt="Food logo"></a>
@@ -179,6 +184,7 @@ while ($rows = mysqli_fetch_array($ress))
 																	<div class="right-review">
 																		<div class="rating-block"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> </div>
 																		<p> 245 Reviews</p> <a href="dishes.php?res_id=' . $rows['rs_id'] . '" class="btn theme-btn-dash">Xem Thực Đơn</a> </div>
+                                                                        
 																</div>
 																<!-- end:right info -->
 															</div>';

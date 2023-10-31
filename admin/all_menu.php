@@ -114,7 +114,7 @@ session_start();
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_users.php">Danh sách tài
                                         khoản</a></li>
-                                <li><a href="add_users.php">Duyệt tài khoản</a>
+                                <li><a href="confirm_restaurant.php">Duyệt tài khoản</a>
                                 </li>
 
                             </ul>
@@ -128,7 +128,7 @@ session_start();
                                         hàng</a></li>
                                 <li><a href="add_category.php">Thêm danh mục</a>
                                 </li>
-                                <li><a href="add_restaurant.php">Duyệt nhà hàng</a></li>
+                                <li><a href="confỉm_addrestaurant.php">Duyệt nhà hàng</a></li>
 
                             </ul>
                         </li>
@@ -137,7 +137,7 @@ session_start();
                                     aria-hidden="true"></i><span
                                     class="hide-menu">Doanh thu</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_menu.php">Doanh thu nhà hàng</a>
+                                <li><a href="doanhthu_allres.php">Doanh thu nhà hàng</a>
                                 </li>
                         
 
@@ -177,8 +177,7 @@ session_start();
                         <div class="col-lg-12">
                             <div class="card card-outline-primary">
                                 <div class="card-header">
-                                    <h4 class="m-b-0 text-white">Danh sách món
-                                        ăn</h4>
+                                    <h4 class="m-b-0 text-white">Doanh thu nhà hàng</h4>
                                 </div>
 
 

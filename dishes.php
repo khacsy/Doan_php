@@ -99,8 +99,8 @@ include_once 'product-action.php'; //including controller
         <!-- end:Top links -->
         <!-- start: Inner page hero -->
         <?php $ress= mysqli_query($db,"select * from restaurant where rs_id='$_GET[res_id]'");
-									     $rows=mysqli_fetch_array($ress);
-										  
+									     $rows=mysqli_fetch_array($ress);                                  
+                                            $_SESSION['id_rs'] = $_GET['res_id'];                                      
 										  ?>
         <section class="inner-page-hero bg-image"
             data-image-src="images/img/dish.jpeg">
@@ -272,7 +272,7 @@ $item_total = 0;
                                             action='dishes.php?res_id=<?php echo $_GET['res_id'];?>&action=add&id=<?php echo $product['d_id']; ?>'>
                                             <div class="rest-logo pull-left">
                                                 <a class="restaurant-logo pull-left"
-                                                    href="#"><?php echo '<img src="admin/Res_img/dishes/'.$product['img'].'" alt="Food logo">'; ?></a>
+                                                    href="#"><?php echo '<img src="arst/Res_img/dishes/'.$product['img'].'" alt="Food logo">'; ?></a>
                                             </div>
                                             <!-- end:Logo -->
                                             <div class="rest-descr">
