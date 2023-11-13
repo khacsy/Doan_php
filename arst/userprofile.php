@@ -3,7 +3,7 @@
 include("../connection/connect.php");
 error_reporting(0);
 session_start();
-if (strlen($_SESSION['user_id']) == 0) {
+if (strlen($_SESSION['user_id_restaurant']) == 0) {
   header('location:../login.php');
 } else {
   if (isset($_POST['update'])) {

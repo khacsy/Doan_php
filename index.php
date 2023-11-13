@@ -1,129 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-include("connection/connect.php");  //include connection file
-error_reporting(0);  // using to hide undefine undex errors
-session_start(); //start temp session until Logout/browser closed
-
+    include ("html.php");
 ?>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="#">
-    <title>Starter Template for Bootstrap</title>
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animsition.min.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/style.css" rel="stylesheet">
-    <!-- link chuong thon bao  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-</head>
 
 <body class="home">
 
     <!--header starts-->
     <!-- .navbar -->
-    <header id="header" class="header-scroll top-header headrom">
-        
-        <nav class="navbar navbar-dark">
-            <div class="container">
-                <button class="navbar-toggler hidden-lg-up" type="button"
-                    data-toggle="collapse"
-                    data-target="#mainNavbarCollapse">&#9776;</button>
-                <a class="navbar-brand" href="index.php"> <img
-                        class="img-rounded" src="images/logotruong.png" alt=""> </a>
-                <div class="collapse navbar-toggleable-md  float-lg-right"
-                    id="mainNavbarCollapse">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item"> <a class="nav-link active"
-                                href="index.php">Trang Chủ <span
-                                    class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link active"
-                                href="restaurants.php">Nhà Hàng <span
-                                    class="sr-only"></span></a> </li>
-
-
-                        <?php
-                    if(empty($_SESSION["user_id"])) // if user is not login
-                        {
-                            echo '
-                                <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Đăng Nhập</a>
-                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                    <ul class="dropdown-user" style="
-                                    background-color: white !important;">
-                                    <li> <a class="dropdown-item" href="./arst/index.php">Restaurant</a> </li>
-                                    <li> <a class="dropdown-item" href="login.php"></i>User</a> </li>
-                                    
-                                    </ul>
-                                </div>
-                              </li>;
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Đăng Ký</a>
-                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                    <ul class="dropdown-user" style="
-                                    background-color: white !important;">
-                                    <li> <a class="dropdown-item" href="register.php"> Restaurant</a> </li>
-                                    <li> <a class="dropdown-item" href="registration.php"></i> User</a> </li>
-                                    
-                                    </ul>
-                                </div>
-                              </li>;
-                                ';
-                        }
-                    else
-                        {
-                                //if user is login
-                                
-                                echo  '<li class="nav-item"><a href="your_orders.php" class="nav-link active">Đơn Đặt</a> </li>';
-                                echo '<li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> '.$_SESSION["username"].'</a>
-                                <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                    <ul class="dropdown-user" style="
-                                    background-color: white !important;">
-                                    <li> <a class="dropdown-item" href="change_password.php"><i class="fa fa-gear"></i> Đổi mật khẩu</a> </li>
-                                    <li> <a class="dropdown-item" href="Logout.php"><i class="fa fa-power-off"></i> Đăng Xuất </a> </li>
-                                    
-                                    </ul>
-                                </div>
-                              </li>';
-                        }
-
-                    ?>
-                        <li class="nav-item">
-                            <form action="search.php" method="get">
-                                <input type="text" name="key" />
-                                <button type="submit" >Tìm kiếm</button> <i class = "fas fa-bell thongbao" ></i>
-                                
-                            </form>
-                            
-                        </li>
-
-
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-        <!-- /.navbar -->
-    </header>
+<?php
+    include ("header.php");
+?>
     <!-- /.navbar -->
     <!-- banner part starts -->
     <section class="hero bg-image" data-image-src="images/img/food1.jpg">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
-                <h1>Koji Food </h1>
+                <h1>Koji Food</h1>
                 <h5 class="font-white space-xs">Đặt món nhanh chóng</h5>
            
                 <div class="steps">
@@ -216,6 +107,7 @@ session_start(); //start temp session until Logout/browser closed
             </div>
         </div>
     </section>
+    
     <!-- Popular block ends -->
     <!-- How it works block starts -->
     <section class="how-it-works">
@@ -370,129 +262,9 @@ session_start(); //start temp session until Logout/browser closed
         </div>
     </section>
     <!-- Featured restaurants ends -->
-    <section class="app-section">
-        <div class="app-wrap">
-            <div class="container">
-                <div class="row text-img-block text-xs-left">
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-5 right-image text-center">
-                            <figure> <img src="images/app.png" alt="Right Image"
-                                    class="img-fluid"> </figure>
-                        </div>
-                        <div class="col-xs-12 col-sm-7 left-text">
-                            <h3>The Best Food Delivery App</h3>
-                            <p>Now you can make food happen pretty much wherever
-                                you are thanks to the free easy-to-use
-                                Food Delivery &amp; Takeout App.</p>
-                            <div class="social-btns">
-                                <a href="#"
-                                    class="app-btn apple-button clearfix">
-                                    <div class="pull-left"><i
-                                            class="fa fa-apple"></i> </div>
-                                    <div class="pull-right"> <span
-                                            class="text">Available on the</span>
-                                        <span class="text-2">App Store</span>
-                                    </div>
-                                </a>
-                                <a href="#"
-                                    class="app-btn android-button clearfix">
-                                    <div class="pull-left"><i
-                                            class="fa fa-android"></i> </div>
-                                    <div class="pull-right"> <span
-                                            class="text">Available on the</span>
-                                        <span class="text-2">Play store</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- start: FOOTER -->
-    <footer class="footer">
-        <div class="container">
-            <!-- top footer statrs -->
-            <div class="row top-footer">
-                <div class="col-xs-12 col-sm-3 footer-logo-block color-gray">
-                    <a href="#"> <img src="images/logotruong.png" alt="Footer logo"
-                            class="img-footer"> </a> <span>Order
-                        Delivery &amp; Take-Out </span>
-                </div>
-                <div class="col-xs-12 col-sm-2 about color-gray">
-                    <h5>About Us</h5>
-                    <ul>
-                        <li><a href="#">About us</a> </li>
-                        <li><a href="#">History</a> </li>
-                        <li><a href="#">Our Team</a> </li>
-                        <li><a href="#">We are hiring</a> </li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-2 how-it-works-links color-gray">
-                    <h5>How it Works</h5>
-                    <ul>
-                        <li><a href="#">Enter your location</a> </li>
-                        <li><a href="#">Choose restaurant</a> </li>
-                        <li><a href="#">Choose meal</a> </li>
-                        <li><a href="#">Pay via credit card</a> </li>
-                        <li><a href="#">Wait for delivery</a> </li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-2 pages color-gray">
-                    <h5>Pages</h5>
-                    <ul>
-                        <li><a href="#">Search results page</a> </li>
-                        <li><a href="#">User Sing Up Page</a> </li>
-                        <li><a href="#">Pricing page</a> </li>
-                        <li><a href="#">Make order</a> </li>
-                        <li><a href="#">Add to cart</a> </li>
-                    </ul>
-                </div>
-                <div class="col-xs-12 col-sm-3 popular-locations color-gray">
-                    <h5>Payment Options</h5>
-                    <ul>
-                        <li>
-                            <a href="#"> <img src="images/paypal.png"
-                                    alt="Paypal"> Paypal</a>
-                        </li>
-                        <li>
-                            <a href="#"> <img src="images/mastercard.png"
-                                    alt="Mastercard"> Mastercard </a>
-                        </li>
-                        <li>
-                            <a href="#"> <img src="images/maestro.png"
-                                    alt="Maestro"> Maestro </a>
-                        </li>
-                        <li>
-                            <a href="#"> <img src="images/stripe.png"
-                                    alt="Stripe"> Stripe </a>
-                        </li>
-                        <li>
-                            <a href="#"> <img src="images/bitcoin.png"
-                                    alt="Bitcoin"> Bitcoin </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- top footer ends -->
-            <!-- bottom footer statrs -->
-
-            <!-- bottom footer ends -->
-        </div>
-    </footer>
-    <!-- end:Footer -->
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/animsition.min.js"></script>
-    <script src="js/bootstrap-slider.min.js"></script>
-    <script src="js/jquery.isotope.min.js"></script>
-    <script src="js/headroom.js"></script>
-    <script src="js/foodpicky.min.js"></script>
+    <?php
+    include ("footer.php");
+?>
 </body>
 
 </html>

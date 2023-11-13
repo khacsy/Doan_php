@@ -2161,6 +2161,9 @@ a[aria-expanded='false'] .fa-angle-down {
   border-color: #f30;
   background-color: #f30;
 }
+.google-map{
+  text-align: center;
+}
 
 /*==================================
 * MAPS
@@ -2713,4 +2716,61 @@ a[aria-expanded='false'] .fa-angle-down {
   font-weight: 600;
   padding: 0 5px;
   color: #3a3e47;
+}
+
+/* MAP */
+
+.main-map {
+  display: flex;
+  margin-top:50px
+}
+
+.main-map .main-map-left {
+  width: 30%;
+  margin-right: 15px;
+}
+
+.main-map .main-map-left form {
+  padding:10px;
+  border: 1px solid blue;
+}
+
+.main-map .main-map-left form .left-form {
+  padding: 15px;
+  position: relative;
+}
+
+.main-map .main-map-left form .left-form i {
+  position: absolute;
+  bottom: 28px;
+  left: 21px;
+}
+
+.main-map .main-map-left form .left-form input {
+  width: 100%;
+  height: 40px;
+  padding-left: 25px;
+}
+
+.main-map .main-map-left form h1 {
+  text-align: center;
+  font-size: 30px;
+  color: blue;
+}
+
+.main-map .main-map-right {
+  width: 70%;
+}
+.main-map .map-btn{
+  padding: 0 15px;
+  margin-bottom: 30px;
+}
+.main-map .map-btn button{
+  width: 100%;
+  height: 40px;
+  color: white;
+  background: blue;
+  border: none;
+  border-radius: 38px;
+  cursor: pointer;
 }

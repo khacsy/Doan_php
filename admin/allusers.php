@@ -16,7 +16,7 @@ session_start();
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Koji Food</title>
+    <title>ADMIN</title>
     <!-- Bootstrap Core CSS -->
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -75,60 +75,9 @@ session_start();
         </div>
         <!-- End header header -->
         <!-- Left Sidebar  -->
-        <div class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a href="#" aria-expanded="false"><i
-                                    class="fa fa-tachometer"></i><span
-                                    class="hide-menu">Dashboard</span></a>
-
-                        </li>
-                        <li class="nav-label">Log</li>
-                        <li> <a href="#" aria-expanded="false"> <span><i
-                                        class="fa fa-user f-s-20 "></i></span><span
-                                    class="hide-menu">Users</span></a>
-                        <li><a href="allusers.php">All Users</a></li>
-                        <li><a href="add_users.php">Add Users</a></li>
-
-
-                        </li>
-                        <li> <a href="#" aria-expanded="false"><i
-                                    class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Store</span></a>
-
-                        <li><a href="allrestraunt.php">All Stores</a></li>
-                        <li><a href="add_category.php">Add Category</a></li>
-                        <li><a href="add_restraunt.php">Add Restaurant</a></li>
-
-                        </li>
-                        <li> <a href="#" aria-expanded="false"><i
-                                    class="fa fa-cutlery"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">Menu</span></a>
-                        <li><a href="all_menu.php">All Menues</a></li>
-                        <li><a href="add_menu.php">Add Menu</a></li>
-
-
-                        </li>
-                        <li> <a href="#" aria-expanded="false"><i
-                                    class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">Orders</span></a>
-                        <li><a href="all_orders.php">All Orders</a></li>
-
-                        </li>
-
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </div>
+        <?php
+    include("menu.php")
+?>
         <!-- End Left Sidebar  -->
         <!-- Page wrapper  -->
         <div class="page-wrapper">

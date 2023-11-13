@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $statusUser = 0;
         $roleUser = "RT";
         $stmtCheckUser = $db->prepare("SELECT * FROM users WHERE u_id = ? AND Role = ? AND status = ?");
-        $stmtCheckUser->bind_param("sss", $_SESSION["user_id"],$roleUser, $statusUser);
+        $stmtCheckUser->bind_param("sss", $_SESSION["user_id_restaurant"],$roleUser, $statusUser);
         $stmtCheckUser->execute();
         $result = $stmtCheckUser->get_result();
         if($result->num_rows > 0){
@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
             if (($extension == 'jpg' || $extension == 'png' || $extension == 'gif') && $fsize < 1000000) {
                 $status = "waiting"; 
                 $stmt = $db->prepare("INSERT INTO restaurant(restaurant_id, title, email, phone, url, o_hr, c_hr, o_days, address, image, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("sssssssssss", $_SESSION["user_id"], $res_name, $email, $phone, $url, $o_hr, $c_hr, $o_days, $address, $fnew, $status); 
+                $stmt->bind_param("sssssssssss", $_SESSION["user_id_restaurant"], $res_name, $email, $phone, $url, $o_hr, $c_hr, $o_days, $address, $fnew, $status); 
                 $stmt->execute();
              
                 if ($stmt->affected_rows > 0) {
@@ -155,71 +155,9 @@ if (isset($_POST['submit'])) {
             </nav>
         </div>
 
-        <div class="left-sidebar">
-
-            <div class="scroll-sidebar">
-
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a href="dashboard.php"><i class="fa fa-tachometer"></i><span>Dashboard</span></a>
-                        </li>
-                        <li class="nav-label">Hệ thống quản lý CRUD</li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i
-                                    class="fa fa-user f-s-20 color-warning"></i><span
-                                    class="hide-menu">Doanh Thu</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_users.php">Nhà Hàng</a></li>
-                                <li><a href="add_users.php">Chi Nhánh</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-archive f-s-20 color-warning"></i><span class="hide-menu">Chi Nhánh</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_restaurant.php">Danh sách nhà
-                                        hàng</a></li>
-                                <li><a href="add_category.php">Thêm danh mục</a>
-                                </li>
-                                <li><a href="add_restaurant.php">Thêm Chi nhánh</a></li>
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-cutlery" aria-hidden="true"></i><span class="hide-menu">Món ăn</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_menu.php">Danh sách món ăn</a>
-                                </li>
-                                <li><a href="add_menu.php">Thêm món ăn</a></li>
-
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">đơn hàng</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
-                                <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">Thống kê</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-
-            </div>
-
-        </div>
+        <?php
+    include("menu.php")
+?>
 
         <div class="page-wrapper">
 

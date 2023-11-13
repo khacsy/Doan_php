@@ -14,9 +14,9 @@ if (isset($_POST['submit'])) {
 		$row = mysqli_fetch_array($result);
 
 		if (is_array($row)) {
+			$_SESSION["user_id_restaurant"] = $row['u_id'];
+			$_SESSION["username_restaurant"] = $row['username'];
 			$message = "ok!";
-			$_SESSION["user_id"] = $row['u_id'];
-			$_SESSION["username"] = $row['username'];
 			header("refresh:1;url=dashboard.php");
 		} else {
 			$message = "Invalid Username or Password!";

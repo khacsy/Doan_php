@@ -97,79 +97,9 @@ session_start();
             </nav>
         </div>
 
-        <div class="left-sidebar">
-
-            <div class="scroll-sidebar">
-
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li class="nav-devider"></li>
-                        <li class="nav-label">Home</li>
-                        <li> <a href="dashboard.php"><i
-                                    class="fa fa-tachometer"></i><span>Dashboard</span></a>
-                        </li>
-                        <li class="nav-label">Hệ thống quản lý CRUD</li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i
-                                    class="fa fa-user f-s-20 color-warning"></i><span
-                                    class="hide-menu">Doanh Thu</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_users.php">Nhà Hàng</a></li>
-                                <li><a href="add_users.php">Chi Nhánh</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i
-                                    class="fa fa-archive f-s-20 color-warning"></i><span
-                                    class="hide-menu">Chi Nhánh</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_restaurant.php">Danh sách nhà
-                                        hàng</a></li>
-                                <li><a href="add_category.php">Thêm danh mục</a>
-                                </li>
-                                <li><a href="add_restaurant.php">Thêm nhà
-                                        hàng</a></li>
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i class="fa fa-cutlery"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">Món ăn</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_menu.php">Danh sách món ăn</a>
-                                </li>
-                                <li><a href="add_menu.php">Thêm món ăn</a></li>
-
-
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">đơn hàng</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="all_orders.php">trạng thái đơn hàng</a></li>
-                                <li><a href="all_oder_confirm.php">đơn hàng đã hoàn thành</a></li>
-                            </ul>
-                        </li>
-                        <li> <a class="has-arrow  " href="#"
-                                aria-expanded="false"><i class="fa fa-shopping-cart"
-                                    aria-hidden="true"></i><span
-                                    class="hide-menu">Thống kê</span></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="thongke.php">số lượt khách hàng đến </a></li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </nav>
-
-            </div>
-
-        </div>
+        <?php
+    include("menu.php")
+?>
 
         <div class="page-wrapper">
 
@@ -205,7 +135,7 @@ session_start();
                                         <?php
                                             $sql = "SELECT u.phone as phone ,u.address as addresss ,  u.username as username , r.title as title,v.sum_visits as sum_visits  FROM total_visits AS v
                                                     LEFT JOIN users AS u ON v.id_user = u.u_id 
-                                                    LEFT JOIN restaurant AS r ON v.id_restaurant = r.rs_id where r.restaurant_id = " . $_SESSION["user_id"];
+                                                    LEFT JOIN restaurant AS r ON v.id_restaurant = r.rs_id where r.restaurant_id = " . $_SESSION["user_id_restaurant"];
                                             $query = mysqli_query($db, $sql);
 
                                             if (!mysqli_num_rows($query) > 0) {
