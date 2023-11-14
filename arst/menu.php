@@ -14,8 +14,7 @@
                                     class="hide-menu">Doanh Thu</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="all_users.php">Nhà Hàng</a></li>
-                                <li><a href="add_users.php">Chi Nhánh</a>
-                                </li>
+                                
 
                             </ul>
                         </li>

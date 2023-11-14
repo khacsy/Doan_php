@@ -129,7 +129,6 @@ session_start();
                                                     FROM users_orders
                                                     GROUP BY restaurant_id;";
                                             $query = mysqli_query($db, $sql);
-
                                             if (!mysqli_num_rows($query) > 0) {
                                                 echo '<td colspan="7"><center>No Users</center></td>';
                                             } else {

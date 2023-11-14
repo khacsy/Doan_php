@@ -13,7 +13,7 @@ if (isset($_GET['user_upd'])) {
     
     if ($stmt->execute()) {
        
-        header("Location: confỉm_addrestaurant.php");
+        header("Location: confirm_addrestaurant.php");
         exit();
     } else {
       

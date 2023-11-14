@@ -182,7 +182,7 @@ session_start();
 																								<td>'.$rows['address'].'</td>
 																								
 																								<td><div class="col-md-3 col-lg-8 m-b-10">
-																								<center><img src="Res_img/'.$rows['image'].'" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
+																								<center><img src="../arst/Res_img/'.$rows['image'].'" class="img-responsive radius"  style="min-width:150px;min-height:100px;"/></center>
 																								</div></td>
 																								
 																								<td>'.$rows['date'].'</td>

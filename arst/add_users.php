@@ -99,67 +99,11 @@ session_start();
     include("menu.php")
 ?>
 
-        <div class="page-wrapper">
-
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-12">
-
-                        <div class="col-lg-12">
-                            <div class="card card-outline-primary">
-                                <div class="card-header">
-                                    <h4 class="m-b-0 text-white">Doanh thu chi nhánh</h4>
-                                </div>
-
-                                <div class="table-responsive m-t-40">
-                                    <table id="myTable"
-                                        class="table table-bordered table-striped table-hover">
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Ngày bán</th>
-                                                <th>Số lượng</th>
-                                                <th>Giảm giá</th>
-                                                <th>Thu nhập</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-
-                                            <?php
-                                            $sql = "SELECT * FROM users order by u_id desc";
-                                            $query = mysqli_query($db, $sql);
-
-                                            if (!mysqli_num_rows($query) > 0) {
-                                                echo '<td colspan="7"><center>No Users</center></td>';
-                                            } else {
-                                                while ($rows = mysqli_fetch_array($query)) {
-
-
-
-                                                    echo ' <tr><td>' . $rows['username'] . '</td>
-																								<td>' . $rows['f_name'] . '</td>
-																								<td>' . $rows['l_name'] . '</td>
-																								<td>' . $rows['email'] . '</td>
-																									
-																									</td></tr>';
-                                                }
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        
     </div>
 
     </div>
-    <footer class="footer"> © 2023 - Team Pixel </footer>
+    
 
     </div>
 

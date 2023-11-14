@@ -22,7 +22,7 @@ session_start();
         function confirmUpdate(userId) {
             var confirmation = confirm("Bạn có chắc chắn muốn duyệt không?");
             if (confirmation) {
-                window.location.href = "update_confirm.php?user_upd=" + userId;
+                window.location.href = "update_status_rest.php?user_upd=" + userId;
             }
         }
     </script>
@@ -106,7 +106,6 @@ session_start();
         <?php
     include("menu.php")
 ?>
-
         <div class="page-wrapper">
 
             <div class="container-fluid">
@@ -138,34 +137,36 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php
-                                                // $sql = "SELECT * FROM users WHERE status = 1 and Role = 'RT' ORDER BY u_id DESC";
-                                                $sql = "SELECT * FROM users ORDER BY u_id DESC";
+                                                $sql = "SELECT * FROM restaurant ORDER BY rs_id DESC";
                                                 $query = mysqli_query($db, $sql);
+
                                                 if (!mysqli_num_rows($query) > 0) {
                                                     echo '<td colspan="7"><center>No Users Confirm</center></td>';
                                                 } else {
                                                     while ($rows = mysqli_fetch_array($query)) {
+                                                        $userId = $rows['rs_id'];
                                                         $colorStatus = "color:red;";
                                                         $status = 'Chưa duyệt';
-                                                        if ($rows['status'] == 0) {
+                                                        if ($rows['status'] == "ok") {
                                                             $colorStatus = "color:blue;";
                                                             $status = "Đã duyệt";
                                                         }
-                                                        $userId = $rows['u_id'];
-                                                ?>        
+                       
+                                            ?>
+                                                     
                                                         <tr>
-                                                            <td><?php echo $rows['username'] ?></td>
-                                                            <td><?php echo $rows['f_name'] ?></td>
-                                                            <td><?php echo $rows['l_name'] ?></td>
+                                                            <td><?php echo $rows['restaurant_id'] ?></td>
+                                                            <td><?php echo $rows['title'] ?></td>
                                                             <td><?php echo $rows['email'] ?></td>
                                                             <td><?php echo $rows['phone'] ?></td>
+                                                            <td><?php echo $rows['url'] ?></td>
                                                             <td><?php echo $rows['address'] ?></td>																								
                                                             <td><?php echo $rows['date'] ?></td>
                                                             <td><p style="<?php echo $colorStatus ?>"><?php echo $status ?></p></td>
                                                             <td>
                                                                 <a href="delete_users.php?user_del=<?php echo $userId ?>" class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i class="fa fa-trash-o" style="font-size:16px"></i></a> 
                                                                 
-                                                                <?php if ($rows['status'] == 1) { ?>
+                                                                <?php if ($rows['status'] != "ok") { ?>
                                                                     <a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5" onclick="confirmUpdate(<?php echo $userId?>)">
                                                                         <i class="fa fa-edit"></i>
                                                                     </a>
@@ -176,7 +177,7 @@ session_start();
                                             <?php            
                                                     }
                                                 }
-                                            ?>
+                                            ?>    
                                         </tbody>
                                     </table>
                                 </div>

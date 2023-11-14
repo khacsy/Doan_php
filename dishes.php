@@ -1,5 +1,6 @@
 <?php
     include ("html.php");
+    include_once 'product-action.php';
 ?>
 
 <body>
@@ -278,169 +279,169 @@ $item_total = 0;
         </div>
 
         <div class="modal fade" id="order-modal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
-                        aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-body cart-addon">
-                    <div class="food-item white">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-lg-6">
-                                <div class="item-img pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/70x70"
-                                            alt="Food logo"></a>
-                                </div>
-                                <!-- end:Logo -->
-                                <div class="rest-descr">
-                                    <h6><a href="#">Sandwich de Alegranza Grande
-                                            Menü (28 - 30 cm.)</a></h6>
-                                </div>
-                                <!-- end:Description -->
-                            </div>
-                            <!-- end:col -->
-                            <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
-                                <span class="price pull-left">$
-                                    2.99</span>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-lg-4">
-                                <div class="row no-gutter">
-                                    <div class="col-xs-7">
-                                        <select class="form-control b-r-0" id="exampleSelect2">
-                                            <option>Size SM</option>
-                                            <option>Size LG</option>
-                                            <option>Size XL</option>
-                                        </select>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body cart-addon">
+                        <div class="food-item white">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <div class="item-img pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img
+                                                src="http://placehold.it/70x70" alt="Food logo"></a>
                                     </div>
-                                    <div class="col-xs-5">
-                                        <input class="form-control" type="number" value="0" id="quant-input-2">
+                                    <!-- end:Logo -->
+                                    <div class="rest-descr">
+                                        <h6><a href="#">Sandwich de Alegranza Grande
+                                                Menü (28 - 30 cm.)</a></h6>
+                                    </div>
+                                    <!-- end:Description -->
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
+                                    <span class="price pull-left">$
+                                        2.99</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-lg-4">
+                                    <div class="row no-gutter">
+                                        <div class="col-xs-7">
+                                            <select class="form-control b-r-0" id="exampleSelect2">
+                                                <option>Size SM</option>
+                                                <option>Size LG</option>
+                                                <option>Size XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <input class="form-control" type="number" value="0" id="quant-input-2">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end:row -->
                         </div>
-                        <!-- end:row -->
-                    </div>
-                    <!-- end:Food item -->
-                    <div class="food-item">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-lg-6">
-                                <div class="item-img pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/70x70"
-                                            alt="Food logo"></a>
-                                </div>
-                                <!-- end:Logo -->
-                                <div class="rest-descr">
-                                    <h6><a href="#">Sandwich de Alegranza Grande
-                                            Menü (28 - 30 cm.)</a></h6>
-                                </div>
-                                <!-- end:Description -->
-                            </div>
-                            <!-- end:col -->
-                            <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
-                                <span class="price pull-left">$
-                                    2.49</span>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-lg-4">
-                                <div class="row no-gutter">
-                                    <div class="col-xs-7">
-                                        <select class="form-control b-r-0" id="exampleSelect3">
-                                            <option>Size SM</option>
-                                            <option>Size LG</option>
-                                            <option>Size XL</option>
-                                        </select>
+                        <!-- end:Food item -->
+                        <div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <div class="item-img pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img
+                                                src="http://placehold.it/70x70" alt="Food logo"></a>
                                     </div>
-                                    <div class="col-xs-5">
-                                        <input class="form-control" type="number" value="0" id="quant-input-3">
+                                    <!-- end:Logo -->
+                                    <div class="rest-descr">
+                                        <h6><a href="#">Sandwich de Alegranza Grande
+                                                Menü (28 - 30 cm.)</a></h6>
+                                    </div>
+                                    <!-- end:Description -->
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
+                                    <span class="price pull-left">$
+                                        2.49</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-lg-4">
+                                    <div class="row no-gutter">
+                                        <div class="col-xs-7">
+                                            <select class="form-control b-r-0" id="exampleSelect3">
+                                                <option>Size SM</option>
+                                                <option>Size LG</option>
+                                                <option>Size XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <input class="form-control" type="number" value="0" id="quant-input-3">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end:row -->
                         </div>
-                        <!-- end:row -->
-                    </div>
-                    <!-- end:Food item -->
-                    <div class="food-item">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-lg-6">
-                                <div class="item-img pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/70x70"
-                                            alt="Food logo"></a>
-                                </div>
-                                <!-- end:Logo -->
-                                <div class="rest-descr">
-                                    <h6><a href="#">Sandwich de Alegranza Grande
-                                            Menü (28 - 30 cm.)</a></h6>
-                                </div>
-                                <!-- end:Description -->
-                            </div>
-                            <!-- end:col -->
-                            <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
-                                <span class="price pull-left">$
-                                    1.99</span>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-lg-4">
-                                <div class="row no-gutter">
-                                    <div class="col-xs-7">
-                                        <select class="form-control b-r-0" id="exampleSelect5">
-                                            <option>Size SM</option>
-                                            <option>Size LG</option>
-                                            <option>Size XL</option>
-                                        </select>
+                        <!-- end:Food item -->
+                        <div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <div class="item-img pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img
+                                                src="http://placehold.it/70x70" alt="Food logo"></a>
                                     </div>
-                                    <div class="col-xs-5">
-                                        <input class="form-control" type="number" value="0" id="quant-input-4">
+                                    <!-- end:Logo -->
+                                    <div class="rest-descr">
+                                        <h6><a href="#">Sandwich de Alegranza Grande
+                                                Menü (28 - 30 cm.)</a></h6>
+                                    </div>
+                                    <!-- end:Description -->
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
+                                    <span class="price pull-left">$
+                                        1.99</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-lg-4">
+                                    <div class="row no-gutter">
+                                        <div class="col-xs-7">
+                                            <select class="form-control b-r-0" id="exampleSelect5">
+                                                <option>Size SM</option>
+                                                <option>Size LG</option>
+                                                <option>Size XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <input class="form-control" type="number" value="0" id="quant-input-4">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end:row -->
                         </div>
-                        <!-- end:row -->
-                    </div>
-                    <!-- end:Food item -->
-                    <div class="food-item">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-6 col-lg-6">
-                                <div class="item-img pull-left">
-                                    <a class="restaurant-logo pull-left" href="#"><img src="http://placehold.it/70x70"
-                                            alt="Food logo"></a>
-                                </div>
-                                <!-- end:Logo -->
-                                <div class="rest-descr">
-                                    <h6><a href="#">Sandwich de Alegranza Grande
-                                            Menü (28 - 30 cm.)</a></h6>
-                                </div>
-                                <!-- end:Description -->
-                            </div>
-                            <!-- end:col -->
-                            <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
-                                <span class="price pull-left">$
-                                    3.15</span>
-                            </div>
-                            <div class="col-xs-6 col-sm-4 col-lg-4">
-                                <div class="row no-gutter">
-                                    <div class="col-xs-7">
-                                        <select class="form-control b-r-0" id="exampleSelect6">
-                                            <option>Size SM</option>
-                                            <option>Size LG</option>
-                                            <option>Size XL</option>
-                                        </select>
+                        <!-- end:Food item -->
+                        <div class="food-item">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <div class="item-img pull-left">
+                                        <a class="restaurant-logo pull-left" href="#"><img
+                                                src="http://placehold.it/70x70" alt="Food logo"></a>
                                     </div>
-                                    <div class="col-xs-5">
-                                        <input class="form-control" type="number" value="0" id="quant-input-5">
+                                    <!-- end:Logo -->
+                                    <div class="rest-descr">
+                                        <h6><a href="#">Sandwich de Alegranza Grande
+                                                Menü (28 - 30 cm.)</a></h6>
+                                    </div>
+                                    <!-- end:Description -->
+                                </div>
+                                <!-- end:col -->
+                                <div class="col-xs-6 col-sm-2 col-lg-2 text-xs-center">
+                                    <span class="price pull-left">$
+                                        3.15</span>
+                                </div>
+                                <div class="col-xs-6 col-sm-4 col-lg-4">
+                                    <div class="row no-gutter">
+                                        <div class="col-xs-7">
+                                            <select class="form-control b-r-0" id="exampleSelect6">
+                                                <option>Size SM</option>
+                                                <option>Size LG</option>
+                                                <option>Size XL</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <input class="form-control" type="number" value="0" id="quant-input-5">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- end:row -->
                         </div>
-                        <!-- end:row -->
+                        <!-- end:Food item -->
                     </div>
-                    <!-- end:Food item -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn theme-btn">Add to
-                        cart</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn theme-btn">Add to
+                            cart</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
         <!-- end:Container -->
         <?php
     include ("footer.php");

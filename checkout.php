@@ -16,7 +16,7 @@ if (empty($_SESSION["user_id"])) {
 
         if ($_POST['submit']) {
             if ($_POST['mod'] == 'COD') {
-                $SQL = "insert into users_orders(u_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
+                $SQL = "insert into users_orders(u_id,restaurant_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $_SESSION["id_rs"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
 
                 mysqli_query($db, $SQL);                 
                 $checkVisits = "SELECT * FROM total_visits WHERE id_user = '" . $_SESSION["user_id"] . "' AND id_restaurant  = '" . $_SESSION["id_rs"] . "'";
@@ -30,7 +30,6 @@ if (empty($_SESSION["user_id"])) {
                     $insertVisits = "INSERT INTO total_visits (id_user, id_restaurant, sum_visits) VALUES ('" . $_SESSION["user_id"] . "', '" . $_SESSION["id_rs"] . "', 1)";
                     mysqli_query($db, $insertVisits);
                 }
-
                
                 $success = "Thankyou! Your Order Placed successfully!";
             } else if ($_POST['mod'] == 'momo') {

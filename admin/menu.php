@@ -31,7 +31,7 @@
                             hàng</a></li>
                     <li><a href="add_category.php">Thêm danh mục</a>
                     </li>
-                    <li><a href="confỉm_addrestaurant.php">Duyệt nhà hàng</a></li>
+                    <li><a href="confirm_addrestaurant.php">Duyệt nhà hàng</a></li>
 
                 </ul>
             </li>
