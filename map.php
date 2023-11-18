@@ -13,42 +13,112 @@
             <div class="main-map">
 
                 <div class="main-map-left">
-                    <form action="" method="get">
+                    <form>
                         <h1>Thông tin chuyến</h1>
                         <div class="left-form">
                             <i style="color:red;" class="fa-solid fa-location-dot"></i>
-                            <input type="text" placeholder="Nhập địa chỉ đi...">
+                            <input id="autocomplete" placeholder="Nhập địa chỉ đi..." type="text" required></input>
                         </div>
                         <div class="left-form">
                             <i style="color:blue;" class="fa-solid fa-location-dot"></i>
-                            <input type="text" placeholder="Nhập địa chỉ đến...">
+                            <input id="autocomplete-den" placeholder="Nhập địa chỉ đến..." type="text" required></input>
                         </div>
                         <div class="map-btn">
-                            <button type="submit">Xem chuyến đi</button>
+                            <button onclick="showSumbit()" type="button">Xem chuyến đi</button>
                         </div>
                     </form>
                 </div>
                 <div class="main-map-right">
                     <!-- bản đồ -->
-                    <!-- <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3834.3706038693595!2d108.23499237459959!3d16.04624704005383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314219d8a6e1e1cd%3A0x9cabe05fda29303!2zMTEyIEhvw6BpIFRoYW5oLCBC4bqvYyBN4bu5IFBow7osIE5nxakgSMOgbmggU8ahbiwgxJDDoCBO4bq1bmcgNTUwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1699715025955!5m2!1svi!2s"
-                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe> -->
-                    <div class="googleMap"></div>
+                    <div id="googleMap" style="width:100%;height:400px;"></div>
                 </div>
             </div>
         </div>
     </section>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDksMnFQUmqOnGZGBIzVacv6YPEgYl8O30&libraries=places&callback=initAutocomplete"
+        async defer></script>
+
+        
     <script>
-    function myMap() {
-        var mapProp = {
-            center: new google.maps.LatLng(51.508742, -0.120850),
-            zoom: 5,
+        var options = {
+            types: ["geocode"],
+            componentRestrictions: {
+                country: "VN"
+            }
         };
-        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-    }
+
+        function initAutocomplete() {
+            autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById("autocomplete")), options
+            );
+            autocomplete.addListener("place_changed", fillInAddress);
+
+
+
+            autocompleteDen = new google.maps.places.Autocomplete(
+                (document.getElementById("autocomplete-den")), options
+            );
+            autocompleteDen.addListener("place_changed", fillInAddressDen);
+
+        }
+
+        var addressDi = '';
+        var addressDen = '';
+        function fillInAddress() {
+           
+            var place = autocomplete.getPlace();
+            addressDi = place.formatted_address
+            // if (addressDi != '' && addressDen != '') {
+            //     showMap(addressDi, addressDen);
+            // }
+
+        }
+        function fillInAddressDen() {
+            var place = autocompleteDen.getPlace();
+            addressDen = place.formatted_address
+            // if (addressDi != '' && addressDen != '') {
+            //     showMap(addressDi, addressDen);
+            // }
+
+        }
+        function showMap(start, end) {
+
+            var mapProp = {
+                center: new google.maps.LatLng(16.0544, 108.2022),
+                zoom: 12,
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+            var directionsService = new google.maps.DirectionsService();
+            var directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+
+            var request = {
+                origin: start,
+                destination: end,
+                travelMode: google.maps.TravelMode.DRIVING
+            };
+
+            directionsService.route(request, function(response, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    directionsRenderer.setDirections(response);
+                } else {
+                    alert("Directions request failed: " + status);
+                }
+            });
+        }
+        function showSumbit() {
+            if (addressDi != '' && addressDen != '') {
+                showMap(addressDi, addressDen);
+            }
+        }
+        
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQkGipUGlRVnEMMK6FjRgZV6RSsqtrdHA&callback=myMap"></script>
+
+
+
     <style>
     .main-map {
         display: flex;
