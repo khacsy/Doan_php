@@ -1,6 +1,9 @@
 <?php
 
 include("../connection/connect.php");
+require('carbon/Carbon.php');
+use Carbon\Carbon;
+$now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 error_reporting(0);
 session_start();
 if (strlen($_SESSION['user_id_restaurant']) == 0) {
@@ -11,12 +14,42 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
     $status = $_POST['status'];
     $remark = $_POST['remark'];
     $query = mysqli_query($db, "insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-    $sql = mysqli_query($db, "update users_orders set status='$status' where o_id='$form_id'");
+    $sql = mysqli_query($db, "update users_orders set status='$status', date='$now' where o_id='$form_id'");
+ 
+    if ($status == 'closed') {
+      
+			$query_thongke = mysqli_query($db,"select * from statistical where date = '$now'");
+      $soluongmua = 0;
+			$price = 0;
+      $query = "SELECT * FROM users_orders WHERE date LIKE '%".$now."%' ";
+      $sql_search = mysqli_query($db, $query);
+      while($row = mysqli_fetch_array($sql_search)){
+        $soluongmua+=$row['quantity'];
+        $price+=$row['price'];
+      }
+      if(mysqli_num_rows($query_thongke)==0){
+        $quantity = $soluongmua;
+        $price = $price;
+        $oder = 1;
+        mysqli_query($db,"INSERT INTO statistical (date,oder,price,quantity) VALUE('$now','$oder','$price','$quantity')" );
+        
+      }
+
+      if(mysqli_num_rows($query_thongke)!=0){
+        while($row_tk = mysqli_fetch_array($query_thongke)){
+          $quantity = $row_tk['quantity'] + $soluongmua;
+          $price = $row_tk['price'] + $price;
+          $oder = $row_tk['oder']+1;
+          mysqli_query($db,"UPDATE statistical SET oder='$oder',price='$price',quantity='$quantity' WHERE date='$now'" );
+          
+        }
+      }
+    }
 
     echo "<script>alert('Form Details Updated Successfully');</script>";
     window.close();
     header("Location: all_orders.php");
-    exit; 
+
   }
 
 ?>
@@ -79,13 +112,6 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
         color: #777;
       }
 
-
-
-
-
-
-
-
       table {
         width: 650px;
         border-collapse: collapse;
@@ -144,13 +170,10 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
               </select></td>
           </tr>
 
-
           <tr>
             <td><b>Message</b></td>
             <td><textarea name="remark" cols="50" rows="10" required="required"></textarea></td>
           </tr>
-
-
 
           <tr>
             <td><b>Action</b></td>
@@ -159,14 +182,6 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
               <input name="Submit2" type="submit" class="btn btn-danger" value="Close this window " onClick="return f2();" style="cursor: pointer;" />
             </td>
           </tr>
-
-
-
-
-
-
-
-
         </table>
       </form>
     </div>

@@ -137,9 +137,7 @@ session_start();
 											$sql="SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id where o_id='".$_GET['user_upd']."'";
 												$query=mysqli_query($db,$sql);
 												$rows=mysqli_fetch_array($query);
-												
-												
-																		
+						
 												?>
 
                                             <tr>
@@ -153,7 +151,7 @@ session_start();
                                                 <td>
                                                     <center>
                                                         <a href="javascript:void(0);"
-                                                            onClick="popUpWindow('order_update.php?form_id=<?php echo htmlentities($rows['o_id']);?>');"
+                                                            onClick="popUpWindow('order_update.php?form_id=<?php echo htmlentities($rows['o_id']);?>&quantity=<?php echo $rows['quantity']; ?>');"
                                                             title="Update order">
                                                             <button
                                                                 type="button"

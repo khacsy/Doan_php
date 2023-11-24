@@ -32,6 +32,7 @@ if (empty($_SESSION["user_id"])) {
                 }
                
                 $success = "Thankyou! Your Order Placed successfully!";
+                unset($_SESSION["cart_item"]);
             } else if ($_POST['mod'] == 'momo') {
                 header('Content-type: text/html; charset=utf-8');
                 // code to process momo payment

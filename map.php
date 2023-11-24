@@ -39,82 +39,106 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDksMnFQUmqOnGZGBIzVacv6YPEgYl8O30&libraries=places&callback=initAutocomplete"
         async defer></script>
 
-        
+
     <script>
-        var options = {
-            types: ["geocode"],
-            componentRestrictions: {
-                country: "VN"
-            }
+    var options = {
+        types: ["geocode"],
+        componentRestrictions: {
+            country: "VN"
+        }
+    };
+
+    function initAutocomplete() {
+        autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById("autocomplete")), options
+        );
+        autocomplete.addListener("place_changed", fillInAddress);
+
+
+
+        autocompleteDen = new google.maps.places.Autocomplete(
+            (document.getElementById("autocomplete-den")), options
+        );
+        autocompleteDen.addListener("place_changed", fillInAddressDen);
+
+    }
+
+    var addressDi = '';
+    var addressDen = '';
+
+    function fillInAddress() {
+
+        var place = autocomplete.getPlace();
+        addressDi = place.formatted_address
+        // if (addressDi != '' && addressDen != '') {
+        //     showMap(addressDi, addressDen);
+        // }
+
+    }
+
+    function fillInAddressDen() {
+        var place = autocompleteDen.getPlace();
+        addressDen = place.formatted_address
+        // if (addressDi != '' && addressDen != '') {
+        //     showMap(addressDi, addressDen);
+        // }
+
+    }
+
+
+    function showMap(start, end) {
+        var mapProp = {
+            center: new google.maps.LatLng(16.0544, 108.2022),
+            zoom: 12,
         };
 
-        function initAutocomplete() {
-            autocomplete = new google.maps.places.Autocomplete(
-                (document.getElementById("autocomplete")), options
-            );
-            autocomplete.addListener("place_changed", fillInAddress);
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer();
+        directionsRenderer.setMap(map);
 
+        var request = {
+            origin: start,
+            destination: end,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
 
-            autocompleteDen = new google.maps.places.Autocomplete(
-                (document.getElementById("autocomplete-den")), options
-            );
-            autocompleteDen.addListener("place_changed", fillInAddressDen);
+        directionsService.route(request, function(response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsRenderer.setDirections(response);
 
-        }
+                // Hiển thị thông tin thời gian di và khoảng cách
+                var route = response.routes[0];
+                var duration = 0;
+                var distance = 0;
 
-        var addressDi = '';
-        var addressDen = '';
-        function fillInAddress() {
-           
-            var place = autocomplete.getPlace();
-            addressDi = place.formatted_address
-            // if (addressDi != '' && addressDen != '') {
-            //     showMap(addressDi, addressDen);
-            // }
-
-        }
-        function fillInAddressDen() {
-            var place = autocompleteDen.getPlace();
-            addressDen = place.formatted_address
-            // if (addressDi != '' && addressDen != '') {
-            //     showMap(addressDi, addressDen);
-            // }
-
-        }
-        function showMap(start, end) {
-
-            var mapProp = {
-                center: new google.maps.LatLng(16.0544, 108.2022),
-                zoom: 12,
-            };
-
-            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-
-            var directionsService = new google.maps.DirectionsService();
-            var directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-
-            var request = {
-                origin: start,
-                destination: end,
-                travelMode: google.maps.TravelMode.DRIVING
-            };
-
-            directionsService.route(request, function(response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsRenderer.setDirections(response);
-                } else {
-                    alert("Directions request failed: " + status);
+                for (var i = 0; i < route.legs.length; i++) {
+                    duration += route.legs[i].duration.value;
+                    distance += route.legs[i].distance.value;
                 }
-            });
-        }
-        function showSumbit() {
-            if (addressDi != '' && addressDen != '') {
-                showMap(addressDi, addressDen);
+
+                var durationInMinutes = Math.round(duration / 60);
+                var distanceInKm = (distance / 1000).toFixed(2);
+
+                // Lấy vị trí giữa đoạn đường và sử dụng nó để đặt vị trí InfoWindow
+                var routeCenter = route.overview_path[Math.floor(route.overview_path.length / 2)];
+
+                var infoWindow = new google.maps.InfoWindow({
+                    content: durationInMinutes + " phút<br>" + distanceInKm + " km"
+                });
+
+                infoWindow.setPosition(routeCenter);
+                infoWindow.open(map);
             }
+        });
+    }
+
+    function showSumbit() {
+        if (addressDi != '' && addressDen != '') {
+            showMap(addressDi, addressDen);
         }
-        
+    }
     </script>
 
 
