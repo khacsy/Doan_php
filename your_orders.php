@@ -17,8 +17,7 @@ else
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
@@ -175,8 +174,7 @@ and also iPads specifically.
 
         <!-- end:Top links -->
         <!-- start: Inner page hero -->
-        <div class="inner-page-hero bg-image"
-            data-image-src="images/img/res.jpeg">
+        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg">
             <div class="container"> </div>
             <!-- end:Container -->
         </div>
@@ -240,6 +238,7 @@ and also iPads specifically.
                                             <th>Số lượng</th>
                                             <th>Giá tiền</th>
                                             <th>Tình trạng</th>
+                                            <th>Giao hàng</th>
                                             <th>Date</th>
                                             <th>Action</th>
 
@@ -272,24 +271,22 @@ and also iPads specifically.
                                             <td data-column="price">
                                                 <?php echo $row['price']; ?>đ
                                             </td>
+
                                             <td data-column="status">
                                                 <?php
                                                             $status = $row['status'];
                                                             if ($status == "" or $status == "NULL")
                                                             {
                                                 ?>
-                                                <button type="button"
-                                                    class="btn btn-info"
+                                                <button type="button" class="btn btn-info"
                                                     style="font-weight:bold;">Đang
                                                     xét duyệt</button>
                                                 <?php
                                                 }
                                                 if ($status == "in process")
                                                 { ?>
-                                                <button type="button"
-                                                    class="btn btn-warning"><span
-                                                        class="fa fa-cog fa-spin"
-                                                        aria-hidden="true"></span>Đang
+                                                <button type="button" class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin" aria-hidden="true"></span>Đang
                                                     vận
                                                     chuyển!</button>
                                                 <?php
@@ -297,10 +294,8 @@ and also iPads specifically.
                                                                 if ($status == "closed")
                                                                 {
                                                 ?>
-                                                <button type="button"
-                                                    class="btn btn-success"><span
-                                                        class="fa fa-check-circle"
-                                                        aria-hidden="true">Đã
+                                                <button type="button" class="btn btn-success"><span
+                                                        class="fa fa-check-circle" aria-hidden="true">Đã
                                                         giao
                                                         hàng</button>
                                                 <?php
@@ -310,22 +305,51 @@ and also iPads specifically.
                                                                 if ($status == "rejected")
                                                                 {
                                                 ?>
-                                                <button type="button"
-                                                    class="btn btn-danger"> <i
+                                                <button type="button" class="btn btn-danger"> <i
                                                         class="fa fa-close"></i>Đã
                                                     hủy</button>
                                                 <?php
                                                                 }
-                                                ?>
+                                                
+                                                if($status != NULL ){
+                                                    if($status!="closed") {
+                                                        if($status!="rejected") {
+                                                            if($status!="in process") {
+                                            ?>
+                                            <button type="button"
+                                                    class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin"
+                                                        aria-hidden="true"></span>
+                                                    <?php echo $status ?></button>
+                                            
+                                            <?php
+                                                    }
+                                                }
+                                            }
+												}
+																			
+											?>
                                             </td>
+                                            <?php 
+																			$ship = $row['ship'];
+																			if($ship == "1")
+																				{
+																		?>
+                                                                            <td> Nhận tại nhà hàng</td>
+                                                                        <?php 
+																			} else {
+                                                                        ?>
+                                                                            <td> Giao tận tay khách hàng</td>
+                                                                        <?php 
+																			}
+                                                                        ?>
                                             <td data-column="Date">
                                                 <?php echo $row['date']; ?></td>
                                             <td data-column="Action"> <a
                                                     href="delete_orders.php?order_del=<?php echo $row['o_id']; ?>"
                                                     onclick="return confirm('Are you sure you want to cancel your order?');"
                                                     class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i
-                                                        class="fa fa-trash-o"
-                                                        style="font-size:16px"></i></a>
+                                                        class="fa fa-trash-o" style="font-size:16px"></i></a>
                                             </td>
                                         </tr>
                                         <?php

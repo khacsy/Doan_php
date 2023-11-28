@@ -230,7 +230,7 @@
                             <div class="restaurant-wrap">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-3 col-md-12 col-lg-3 text-xs-center">
-                                        <a class="restaurant-logo" href="dishes.php?res_id='.$rows['rs_id'].'" > <img src="admin/Res_img/'.$rows['image'].'" alt="Restaurant logo"> </a>
+                                        <a class="restaurant-logo" href="dishes.php?res_id='.$rows['rs_id'].'" > <img src="arst/Res_img/'.$rows['image'].'" alt="Restaurant logo"> </a>
                                     </div>
                                     <!--end:col -->
                                     <div class="col-xs-12 col-sm-9 col-md-12 col-lg-9">

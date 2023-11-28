@@ -129,6 +129,7 @@ session_start();
                                                 <th>Giá</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Tình trạng</th>
+                                                <th>Giao hàng</th>
                                                 <th>Reg-Date</th>
                                                 <th>Action</th>
 
@@ -164,19 +165,18 @@ session_start();
 																								<td>'.$rows['address'].'</td>';
 																								?>
                                             <?php 
-																			$status=$rows['status'];
-																			if($status=="" or $status=="NULL")
-																			{
-																			?>
+												$status=$rows['status'];
+												if($status=="" or $status==NULL){
+											?>
                                             <td> <button type="button"
                                                     class="btn btn-info"><span
                                                         class="fa fa-bars"
                                                         aria-hidden="true"></span>
                                                     Đang xét duyệt</button></td>
                                             <?php 
-																			  }
-																			   if($status=="in process")
-																			 { ?>
+												}
+												if($status=="in process"){ 
+                                            ?>
                                             <td> <button type="button"
                                                     class="btn btn-warning"><span
                                                         class="fa fa-cog fa-spin"
@@ -184,23 +184,43 @@ session_start();
                                                     Đang vận chuyển!</button>
                                             </td>
                                             <?php
-																				}
-																			
-																			?>
-                                            <?php
-																			if($status=="rejected")
-																				{
-																			?>
+												}
+												if($status=="rejected"){
+											?>
                                             <td> <button type="button"
                                                     class="btn btn-danger"> <i
                                                         class="fa fa-close"></i>
                                                     Đã Hủy</button></td>
                                             <?php 
-																			} 
-																			?>
+												}
+                                                if($status != NULL ){
+                                            ?>
+                                            <td> <button type="button"
+                                                    class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin"
+                                                        aria-hidden="true"></span>
+                                                    <?php echo $status ?></button>
+                                            </td>
+                                            <?php
+												}
+																			
+											?>
+                                            <?php 
+																			$ship = $rows['ship'];
+																			if($ship == "1")
+																				{
+																		?>
+                                                                            <td> Nhận tại nhà hàng</td>
+                                                                        <?php 
+																			} else {
+                                                                        ?>
+                                                                            <td> Giao tận tay khách hàng</td>
+                                                                        <?php 
+																			}
+                                                                        ?>
                                             <?php																									
-																							echo '	<td>'.$rows['date'].'</td>';
-																							?>
+												echo '	<td>'.$rows['date'].'</td>';
+											?>
                                             <td>
                                                 <a href="delete_orders.php?order_del=<?php echo $rows['o_id'];?>"
                                                     onclick="return confirm('Are you sure?');"

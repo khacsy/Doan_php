@@ -16,7 +16,7 @@ if (empty($_SESSION["user_id"])) {
 
         if ($_POST['submit']) {
             if ($_POST['mod'] == 'COD') {
-                $SQL = "insert into users_orders(u_id,restaurant_id,title,quantity,price) values('" . $_SESSION["user_id"] . "','" . $_SESSION["id_rs"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "')";
+                $SQL = "insert into users_orders(u_id,restaurant_id,title,quantity,price,ship) values('" . $_SESSION["user_id"] . "','" . $_SESSION["id_rs"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','" . $_POST['ship'] . "')";
 
                 mysqli_query($db, $SQL);                 
                 $checkVisits = "SELECT * FROM total_visits WHERE id_user = '" . $_SESSION["user_id"] . "' AND id_restaurant  = '" . $_SESSION["id_rs"] . "'";
@@ -293,9 +293,11 @@ if (empty($_SESSION["user_id"])) {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Ưu đãi</td>
-                                                                <td><input id ="ipvoucher" class = "ipvoucher" type="text" placeholder = "nhập voucher"></td>
-                                                                <td><button>check</button></td>
+                                                                <td>Giao hàng</td>
+                                                                <td><select name="ship" id="">
+                                                                    <option value="1">Nhận tại nhà hàng</option>
+                                                                    <option value="2">Giao tận tay khách hàng</option>
+                                                                </select></td>
                                                             </tr>
                                                             
                                                             <tr>

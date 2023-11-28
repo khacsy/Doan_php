@@ -129,6 +129,7 @@ session_start();
                                                 <th>Giá</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Tình trạng</th>
+                                                <th>Giao hàng</th>
                                                 <th>Reg-Date</th>
                                                 <th>Action</th>
 
@@ -178,7 +179,21 @@ session_start();
                                                                        
                                                                         
                                         
-                                            <?php																									
+                                           
+                                                                        <?php 
+																			$ship = $rows['ship'];
+																			if($ship == "1")
+																				{
+																		?>
+                                                                            <td> Nhận tại nhà hàng</td>
+                                                                        <?php 
+																			} else {
+                                                                        ?>
+                                                                            <td> Giao tận tay khách hàng</td>
+                                                                        <?php 
+																			}
+                                                                        ?>
+                                                                         <?php																									
 																							echo '	<td>'.$rows['date'].'</td>';
 																							?>
                                             <td>

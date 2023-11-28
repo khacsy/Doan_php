@@ -3,6 +3,8 @@
 include("../connection/connect.php");
 require('carbon/Carbon.php');
 use Carbon\Carbon;
+$date = Carbon::now('Asia/Ho_Chi_Minh');
+$formattedDateTime = $date->format('Y-m-d H:i:s');
 $now = Carbon::now('Asia/Ho_Chi_Minh')->toDateString();
 error_reporting(0);
 session_start();
@@ -14,7 +16,7 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
     $status = $_POST['status'];
     $remark = $_POST['remark'];
     $query = mysqli_query($db, "insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-    $sql = mysqli_query($db, "update users_orders set status='$status', date='$now' where o_id='$form_id'");
+    $sql = mysqli_query($db, "update users_orders set status='$status', date='$formattedDateTime' where o_id='$form_id'");
  
     if ($status == 'closed') {
       
@@ -165,6 +167,9 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
                 <option value="">Select Status</option>
                 <option value="in process">Đang vận chuyển</option>
                 <option value="closed">Đã giao hàng</option>
+                <option value="Đã thanh toán 20%">Đã thanh toán 20%</option>
+                <option value="Đã thanh toán 50%">Đã thanh toán 50%</option>
+                <option value="Đã thanh toán 100%">Đã thanh toán 100%</option>
                 <option value="rejected">Đã hủy</option>
 
               </select></td>

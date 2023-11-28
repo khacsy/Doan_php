@@ -4,7 +4,7 @@
 
 <body>
     <!--header starts-->
-<?php
+    <?php
     include ("header.php");
 ?>
     <div class="page-wrapper">
@@ -16,18 +16,15 @@
                         <span>1</span><a href="restaurants.php">Chọn Nhà
                             Hàng</a>
                     </li>
-                    <li class="col-xs-12 col-sm-4 link-item"><span>2</span><a
-                            href="#">Đặt món ăn yêu thích của bạn</a>
+                    <li class="col-xs-12 col-sm-4 link-item"><span>2</span><a href="#">Đặt món ăn yêu thích của bạn</a>
                     </li>
-                    <li class="col-xs-12 col-sm-4 link-item"><span>3</span><a
-                            href="#">Giao hàng và thanh toán</a></li>
+                    <li class="col-xs-12 col-sm-4 link-item"><span>3</span><a href="#">Giao hàng và thanh toán</a></li>
                 </ul>
             </div>
         </div>
         <!-- end:Top links -->
         <!-- start: Inner page hero -->
-        <div class="inner-page-hero bg-image"
-            data-image-src="images/img/res.jpeg">
+        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg">
             <div class="container"> </div>
             <!-- end:Container -->
         </div>
@@ -125,4 +122,5 @@ while ($rows = mysqli_fetch_array($ress))
     include ("footer.php");
 ?>
 </body>
+
 </html>

@@ -42,6 +42,8 @@ session_start();
                         <th>Tên món ăn</th>
                         <th>Số lượng</th>
                         <th>giá tiền</th>
+                        <th>Ngày đặt</th>
+                        <th>Giao hàng</th>
                         <th>Tình trạng</th>
                     </tr>
                 </thead>
@@ -61,6 +63,20 @@ session_start();
                         <td><?php echo $rows['title'] ?></td>
                         <td><?php echo $rows['quantity'] ?></td>
                         <td><?php echo $rows['price'] ?></td>
+                        <td><?php echo $rows['date'] ?></td>
+                        <?php 
+																			$ship = $rows['ship'];
+																			if($ship == "1")
+																				{
+																		?>
+                                                                            <td> Nhận tại nhà hàng</td>
+                                                                        <?php 
+																			} else {
+                                                                        ?>
+                                                                            <td> Giao tận tay khách hàng</td>
+                                                                        <?php 
+																			}
+                                                                        ?>
                         <td>
                             <?php 
                                 $status=$rows['status'];
@@ -102,7 +118,24 @@ session_start();
                                 Đã Hủy</button>
                             <?php 
                                 } 
-                            ?>
+                                                if($status != NULL ){
+                                                    if($status!="closed") {
+                                                        if($status!="rejected") {
+                                                            if($status!="in process") {
+                                            ?>
+                                            <button type="button"
+                                                    class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin"
+                                                        aria-hidden="true"></span>
+                                                    <?php echo $status ?></button>
+                                            
+                                            <?php
+                                                    }
+                                                }
+                                            }
+												}
+																			
+											?>
                         </td>
                     <tr>
                         <?php
