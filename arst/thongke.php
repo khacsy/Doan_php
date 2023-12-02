@@ -132,25 +132,7 @@ session_start();
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php
-                                            $sql = "SELECT u.phone as phone ,u.address as addresss ,  u.username as username , r.title as title,v.sum_visits as sum_visits  FROM total_visits AS v
-                                                    LEFT JOIN users AS u ON v.id_user = u.u_id 
-                                                    LEFT JOIN restaurant AS r ON v.id_restaurant = r.rs_id where r.restaurant_id = " . $_SESSION["user_id_restaurant"];
-                                            $query = mysqli_query($db, $sql);
-
-                                            if (!mysqli_num_rows($query) > 0) {
-                                                echo '<td colspan="8"><center>No Orders</center></td>';
-                                            } else {
-                                                while ($rows = mysqli_fetch_array($query)) {
-                                                    echo ' <tr>
-                                                            <td>' . $rows['username'] . '</td>
-                                                            <td>' . $rows['phone'] . '</td>
-                                                            <td>' . $rows['addresss'] . '</td>
-                                                            <td>' . $rows['title'] . '</td>
-                                                            <td>' . $rows['sum_visits'] . '</td>';
-                                                }
-                                            }
-                                            ?>                                       
+                                                                         
                                         </tbody>
                                     </table>
                                 </div>

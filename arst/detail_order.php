@@ -26,7 +26,7 @@ session_start();
     <div class="card card-outline-primary">
 
         <div class="card-header">
-            <h4 class="m-b-0 text-white">Chi tiết doanh thu nhà hàng</h4>
+            <h4 class="m-b-0 text-white">Chi tiết đơn hàng ' #<?php echo $_GET['code'] ?> '</h4>
         </div>
 
         <div class="table-responsive m-t-40">
@@ -42,8 +42,8 @@ session_start();
                 </thead>
                 <tbody>
                     <?php
-                        $restaurant_id = $_GET['restaurant_id'];
-                        $sql = "SELECT * FROM detail_order WHERE restaurant_id = '$restaurant_id'";
+                        $order_id = $_GET['order_id'];
+                        $sql = "SELECT * FROM detail_order WHERE order_id = '$order_id'";
                         $query = mysqli_query($db, $sql);
                         $countOrder = 0;
                             while ($rows = mysqli_fetch_array($query)) {

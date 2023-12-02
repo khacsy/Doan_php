@@ -105,25 +105,30 @@
         };
 
         directionsService.route(request, function(response, status) {
+            // Kiểm tra xem yêu cầu chỉ đường đã thành công hay không.
             if (status == google.maps.DirectionsStatus.OK) {
+                // Nếu yêu cầu thành công, đoạn mã này sẽ sử dụng directionsRenderer để hiển thị đường đi trên bản đồ.
                 directionsRenderer.setDirections(response);
 
                 // Hiển thị thông tin thời gian di và khoảng cách
+                // Lấy thông tin về tuyến đường từ phản hồi. Trong trường hợp này, chỉ lấy tuyến đường đầu tiên
                 var route = response.routes[0];
+                // Khởi tạo biến để tính tổng thời gian và khoảng cách của tuyến đường.
                 var duration = 0;
                 var distance = 0;
-
+                // Lặp qua các phần của tuyến đường (legs) để tính tổng thời gian và khoảng cách.
                 for (var i = 0; i < route.legs.length; i++) {
                     duration += route.legs[i].duration.value;
                     distance += route.legs[i].distance.value;
                 }
-
+                // Chuyển đổi thời gian từ giây sang phút và làm tròn.
                 var durationInMinutes = Math.round(duration / 60);
+                // Chuyển đổi khoảng cách từ mét sang kilômét và làm tròn đến hai chữ số thập phân.
                 var distanceInKm = (distance / 1000).toFixed(2);
 
                 // Lấy vị trí giữa đoạn đường và sử dụng nó để đặt vị trí InfoWindow
                 var routeCenter = route.overview_path[Math.floor(route.overview_path.length / 2)];
-
+                // Tạo một InfoWindow với nội dung là thời gian và khoảng cách, sau đó đặt vị trí của InfoWindow tại routeCenter và mở nó trên bản đồ.
                 var infoWindow = new google.maps.InfoWindow({
                     content: durationInMinutes + " phút<br>" + distanceInKm + " km"
                 });

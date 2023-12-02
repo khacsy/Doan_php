@@ -12,11 +12,10 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
   header('location:../login.php');
 } else {
   if (isset($_POST['update'])) {
-    $form_id = $_GET['form_id'];
     $status = $_POST['status'];
-    $remark = $_POST['remark'];
-    $query = mysqli_query($db, "insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-    $sql = mysqli_query($db, "update users_orders set status='$status', date='$formattedDateTime' where o_id='$form_id'");
+    $order_id = $_GET['order_id'];
+
+    mysqli_query($db, "update `order` set status='$status', date='$formattedDateTime' where id='$order_id'");
  
     if ($status == 'closed') {
       
@@ -152,8 +151,8 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
 
         <table border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td><b>Form Number</b></td>
-            <td><?php echo htmlentities($_GET['form_id']); ?></td>
+            <td><b>Đơn hàng</b></td>
+            <td>#<?php echo $_GET['code'] ?></td>
           </tr>
           <tr>
             <td>&nbsp;</td>
@@ -162,29 +161,29 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
           </tr>
 
           <tr>
-            <td><b>Status</b></td>
+            <td><b>Tình trạng</b></td>
             <td><select name="status" required="required">
-                <option value="">Select Status</option>
-                <option value="in process">Đang vận chuyển</option>
-                <option value="closed">Đã giao hàng</option>
+                <option value="">---Chọn tình trạng---</option>
+                <option value="Đang vận chuyển">Đang vận chuyển</option>
+                <option value="Đã giao hàng">Đã giao hàng</option>
                 <option value="Đã thanh toán 20%">Đã thanh toán 20%</option>
                 <option value="Đã thanh toán 50%">Đã thanh toán 50%</option>
                 <option value="Đã thanh toán 100%">Đã thanh toán 100%</option>
-                <option value="rejected">Đã hủy</option>
+                <option value="Đã hủy">Đã hủy</option>
 
               </select></td>
           </tr>
 
           <tr>
-            <td><b>Message</b></td>
+            <td><b>Ghi chú</b></td>
             <td><textarea name="remark" cols="50" rows="10" required="required"></textarea></td>
           </tr>
 
           <tr>
             <td><b>Action</b></td>
-            <td><input type="submit" name="update" class="btn btn-primary" value="Submit">
+            <td><input type="submit" name="update" class="btn btn-primary" value="Cập nhật">
 
-              <input name="Submit2" type="submit" class="btn btn-danger" value="Close this window " onClick="return f2();" style="cursor: pointer;" />
+              <input name="Submit2" type="submit" class="btn btn-danger" value="Đóng" onClick="return f2();" style="cursor: pointer;" />
             </td>
           </tr>
         </table>

@@ -9,30 +9,30 @@ include_once 'product-action.php';
 if (empty($_SESSION["user_id"])) {
     header('location:login.php');
 } else {
-    
+
+    foreach ($_SESSION["cart_item"] as $item) {
+        $item_total += ($item["price"] * $item["quantity"]);
+    }
+    if ($_POST['submit']) {
+    $code = random_int(1000, 9999);
+
+    $sqlOrder = "insert into `order` (u_id,code,ship) values ('" . $_SESSION["user_id"] . "','" . $code . "','" . $_POST['ship'] . "')";
+    $queryOrder = mysqli_query($db, $sqlOrder);
+    $orderId = mysqli_insert_id($db);
     foreach ($_SESSION["cart_item"] as $item) {
     
         $item_total += ($item["price"] * $item["quantity"]);
 
-        if ($_POST['submit']) {
+        // if ($_POST['submit']) {
             if ($_POST['mod'] == 'COD') {
-                $SQL = "insert into users_orders(u_id,restaurant_id,title,quantity,price,ship) values('" . $_SESSION["user_id"] . "','" . $_SESSION["id_rs"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','" . $_POST['ship'] . "')";
+                $sqlDetail = "INSERT INTO `detail_order` (order_id, restaurant_id, title, quantity, price) VALUES ('". $orderId ."', '". $_SESSION["id_rs"] ."', '". $item["title"] ."', '". $item["quantity"] ."', '". $item["price"] ."')";
+                mysqli_query($db, $sqlDetail);
+                $SQL = "insert into users_orders(u_id,restaurant_id,title,quantity,price,ship,code) values('" . $_SESSION["user_id"] . "','" . $_SESSION["id_rs"] . "','" . $item["title"] . "','" . $item["quantity"] . "','" . $item["price"] . "','" . $_POST['ship'] . "','" . $code . "')";
 
-                mysqli_query($db, $SQL);                 
-                $checkVisits = "SELECT * FROM total_visits WHERE id_user = '" . $_SESSION["user_id"] . "' AND id_restaurant  = '" . $_SESSION["id_rs"] . "'";
-                $resultVisits = mysqli_query($db, $checkVisits);
-
-                if(mysqli_num_rows($resultVisits) > 0){
-                    $updateVisits = "UPDATE total_visits SET sum_visits = sum_visits + 1 WHERE id_user = '" . $_SESSION["user_id"] . "' AND id_restaurant  = '" . $_SESSION["id_rs"] . "'";
-                    mysqli_query($db, $updateVisits);
-                }
-                else{
-                    $insertVisits = "INSERT INTO total_visits (id_user, id_restaurant, sum_visits) VALUES ('" . $_SESSION["user_id"] . "', '" . $_SESSION["id_rs"] . "', 1)";
-                    mysqli_query($db, $insertVisits);
-                }
-               
+                mysqli_query($db, $SQL);
                 $success = "Thankyou! Your Order Placed successfully!";
                 unset($_SESSION["cart_item"]);
+
             } else if ($_POST['mod'] == 'momo') {
                 header('Content-type: text/html; charset=utf-8');
                 // code to process momo payment
@@ -188,8 +188,9 @@ if (empty($_SESSION["user_id"])) {
 
                 header('Location: ' . $jsonResult['payUrl']);
             }
-        }
+        // }
     }
+}
 ?>
 
     <body>

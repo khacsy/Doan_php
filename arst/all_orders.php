@@ -26,8 +26,7 @@ session_start();
 
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none"
-                stroke-width="2" stroke-miterlimit="10" />
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
         </svg>
     </div>
 
@@ -38,8 +37,8 @@ session_start();
                 <div class="navbar-header">
                     <a class="navbar-brand" href="dashboard.php">
 
-                        <span><img src="images/logotruong.png" alt="homepage"
-                                class="dark-logo" style="width: 70px" /></span>
+                        <span><img src="images/logotruong.png" alt="homepage" class="dark-logo"
+                                style="width: 70px" /></span>
                     </a>
                 </div>
                 <div class="navbar-collapse">
@@ -57,8 +56,7 @@ session_start();
 
                         <li class="nav-item dropdown">
 
-                            <div
-                                class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
                                 <ul>
                                     <li>
                                         <div class="drop-title">Notifications
@@ -66,11 +64,9 @@ session_start();
                                     </li>
 
                                     <li>
-                                        <a class="nav-link text-center"
-                                            href="javascript:void(0);">
+                                        <a class="nav-link text-center" href="javascript:void(0);">
                                             <strong>Check all
-                                                notifications</strong> <i
-                                                class="fa fa-angle-right"></i>
+                                                notifications</strong> <i class="fa fa-angle-right"></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -78,16 +74,12 @@ session_start();
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted  "
-                                href="#" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img
-                                    src="images/bookingSystem/user-icn.png"
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png"
                                     alt="user" class="profile-pic" /></a>
-                            <div
-                                class="dropdown-menu dropdown-menu-right animated zoomIn">
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
                                 <ul class="dropdown-user">
-                                    <li><a href="logout.php"><i
-                                                class="fa fa-power-off"></i>
+                                    <li><a href="logout.php"><i class="fa fa-power-off"></i>
                                             Logout</a></li>
                                 </ul>
                             </div>
@@ -119,14 +111,11 @@ session_start();
                                 </div>
 
                                 <div class="table-responsive m-t-40">
-                                    <table id="myTable"
-                                        class="table table-bordered table-striped">
+                                    <table id="myTable" class="table table-bordered table-striped">
                                         <thead class="thead-dark">
                                             <tr>
+                                                <th>Mã đơn hàng</th>
                                                 <th>Tên người dùng</th>
-                                                <th>Tên món</th>
-                                                <th>Số Lượng</th>
-                                                <th>Giá</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Tình trạng</th>
                                                 <th>Giao hàng</th>
@@ -139,7 +128,9 @@ session_start();
 
 
                                             <?php
-												$sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id ORDER BY users_orders.date DESC";
+												$sql = "SELECT `order`.*, users.address, users.l_name, users.f_name FROM `order`
+                                                JOIN users ON `order`.u_id = users.u_id
+                                                ORDER BY `order`.id DESC";
 												$query=mysqli_query($db,$sql);
 												
 													if(!mysqli_num_rows($query) > 0 )
@@ -148,57 +139,29 @@ session_start();
 														}
 													else
 														{				
-																	while($rows=mysqli_fetch_array($query))
-																		{
-																																							
+														while($rows=mysqli_fetch_array($query))
+															{
+                                                                $status=$rows['status'];
+                                                                if($status == null) {
+                                                                    $status = "Chờ xét duyệt";
+                                                                }
 																				?>
                                             <?php
-                                             $status=$rows['status'];
-                                             if ($status == "closed") {
+                                             
+                                             if ($status == "Đã giao hàng") {
                                                  continue;
                                              }
 																					echo ' <tr>
-																					           <td>'.$rows['username'].'</td>
-																								<td>'.$rows['title'].'</td>
-																								<td>'.$rows['quantity'].'</td>
-																								<td>'.$rows['price'].'đ</td>
-																								<td>'.$rows['address'].'</td>';
+																					           <td>#'. $rows['code'] .'</td>
+																								<td>'. $rows['l_name'] .' '. $rows['f_name'] .'</td>
+																								<td>'. $rows['address'] .'</td>';
 																								?>
-                                            <?php 
-												$status=$rows['status'];
-												if($status=="" or $status==NULL){
-											?>
-                                            <td> <button type="button"
-                                                    class="btn btn-info"><span
-                                                        class="fa fa-bars"
-                                                        aria-hidden="true"></span>
-                                                    Đang xét duyệt</button></td>
-                                            <?php 
-												}
-												if($status=="in process"){ 
-                                            ?>
-                                            <td> <button type="button"
-                                                    class="btn btn-warning"><span
-                                                        class="fa fa-cog fa-spin"
-                                                        aria-hidden="true"></span>
-                                                    Đang vận chuyển!</button>
-                                            </td>
+                                            
                                             <?php
-												}
-												if($status=="rejected"){
-											?>
-                                            <td> <button type="button"
-                                                    class="btn btn-danger"> <i
-                                                        class="fa fa-close"></i>
-                                                    Đã Hủy</button></td>
-                                            <?php 
-												}
                                                 if($status != NULL ){
                                             ?>
-                                            <td> <button type="button"
-                                                    class="btn btn-warning"><span
-                                                        class="fa fa-cog fa-spin"
-                                                        aria-hidden="true"></span>
+                                            <td> <button type="button" class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin" aria-hidden="true"></span>
                                                     <?php echo $status ?></button>
                                             </td>
                                             <?php
@@ -210,30 +173,34 @@ session_start();
 																			if($ship == "1")
 																				{
 																		?>
-                                                                            <td> Nhận tại nhà hàng</td>
-                                                                        <?php 
+                                            <td> Nhận tại nhà hàng</td>
+                                            <?php 
 																			} else {
                                                                         ?>
-                                                                            <td> Giao tận tay khách hàng</td>
-                                                                        <?php 
+                                            <td> Giao tận tay khách hàng</td>
+                                            <?php 
 																			}
                                                                         ?>
                                             <?php																									
 												echo '	<td>'.$rows['date'].'</td>';
 											?>
                                             <td>
-                                                <a href="delete_orders.php?order_del=<?php echo $rows['o_id'];?>"
+                                            <a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-xs m-b-10" 
+                                            onClick="popUpWindow('detail_order.php?order_id=<?php echo $rows['id'] ?>&code=<?php echo $rows['code'] ?>');">
+                                            <i class="fa fa-bars" style="font-size:16px"></i></a>
+                                                <a href="delete_orders.php?order_del=<?php echo $rows['id'];?>"
                                                     onclick="return confirm('Are you sure?');"
                                                     class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i
-                                                        class="fa fa-trash-o"
-                                                        style="font-size:16px"></i></a>
-                                                <?php
-																								echo '<a href="view_order.php?user_upd='.$rows['o_id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
-																									</td>
-																									</tr>';
+                                                        class="fa fa-trash-o" style="font-size:16px"></i></a>
+                                                
+													<a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                                                    onClick="popUpWindow('order_update.php?order_id=<?php echo $rows['id'] ?>&code=<?php echo $rows['code'] ?>');">
+                                                        <i class="fa fa-edit"></i></a>
+											</td>
+											</tr>
 																					 
 																						
-																						
+                                             <?php			
 																		}	
 														}
 												
@@ -263,6 +230,19 @@ session_start();
 
     </div>
 
+    <script language="javascript" type="text/javascript">
+    var popUpWin = 0;
+
+    function popUpWindow(URLStr, left, top, width, height) {
+        if (popUpWin) {
+            if (!popUpWin.closed) popUpWin.close();
+        }
+        popUpWin = open(URLStr, 'popUpWin',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' +
+            1000 + ',height=' + 1000 + ',left=' + left + ', top=' + top +
+            ',screenX=' + left + ',screenY=' + top + '');
+    }
+    </script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
@@ -271,26 +251,19 @@ session_start();
     <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <script src="js/custom.min.js"></script>
     <script src="js/lib/datatables/datatables.min.js"></script>
-    <script
-        src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
+    <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js">
     </script>
-    <script
-        src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js">
+    <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js">
     </script>
-    <script
-        src="js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js">
+    <script src="js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js">
     </script>
-    <script
-        src="js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js">
+    <script src="js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js">
     </script>
-    <script
-        src="js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js">
+    <script src="js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js">
     </script>
-    <script
-        src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js">
+    <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js">
     </script>
-    <script
-        src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js">
+    <script src="js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js">
     </script>
 
 </body>

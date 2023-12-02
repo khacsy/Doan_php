@@ -101,48 +101,64 @@ session_start();
                         <div class="col-lg-12">
                             <div class="card card-outline-primary">
                                 <div class="card-header">
-                                    <h4 class="m-b-0 text-white">Danh sách tài
-                                        khoản</h4>
+                                    <h4 class="m-b-0 text-white">Doanh thu nhà hàng</h4>
                                 </div>
+
+                                <?php
+                                            $arrayDoanhThu = [];
+                                            $sql = "SELECT * FROM `detail_order`";
+                                            $query = mysqli_query($db, $sql);
+                                            while ($rows = mysqli_fetch_array($query)) {
+                                                $restaurantId = $rows['restaurant_id'];
+                                                if (isset($something[$restaurantId])) {
+                                                    $quantity = $arrayDoanhThu[$rows['restaurant_id']]['quantity'];
+                                                    $price = $arrayDoanhThu[$rows['restaurant_id']]['price'];
+                                                    $arrayDoanhThu[$rows['restaurant_id']] = [
+                                                        'quantity' => $quantity + $rows['quantity'],
+                                                        'price' => $price + $rows['price']
+                                                    ];
+
+                                                } else {
+                                                    $arrayDoanhThu[$restaurantId] = [
+                                                        'quantity' => $rows['quantity'],
+                                                        'price' => $rows['price']
+                                                    ];
+                                                }
+                                            }
+                                                    
+                                        ?>
 
                                 <div class="table-responsive m-t-40">
                                     <table id="myTable" class="table table-bordered table-striped table-hover">
                                         <thead class="thead-dark">
                                             <tr>
-                                                <th>Nhà hàng</th>
-                                                <th>tổng tiền</th>
-                                                <th>tổng số lượng</th>
+                                                <th>Tên nhà hàng</th>
+                                                <th>Số lượng</th>
+                                                <th>Giá</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sql = "SELECT restaurant_id, SUM(price) as total_price, SUM(quantity) as total_quantity
-                                                    FROM users_orders
-                                                    GROUP BY restaurant_id;";
-                                            $query = mysqli_query($db, $sql);
-                                            if (!mysqli_num_rows($query) > 0) {
-                                                echo '<td colspan="7"><center>No Users</center></td>';
-                                            } else {
-                                                while ($rows = mysqli_fetch_array($query)) {
-                                                    $rs_id =$rows['restaurant_id'];
-                                                    $query_name = mysqli_query($db, "SELECT title FROM restaurant WHERE rs_id = '$rs_id'");
-                                                    $title = mysqli_fetch_array($query_name)[0];
-   
+                                            foreach ($arrayDoanhThu as $key => $value) {
+                                                $sqlRestaurant = "SELECT title FROM `restaurant` WHERE rs_id = '$key' LIMIT 1";
+                                                $queryRestaurant = mysqli_query($db, $sqlRestaurant);
+                                                $row = mysqli_fetch_assoc($queryRestaurant);
+                                                $title = $row['title'];
                                         ?>
                                             <tr>
                                                 <td><?php echo $title ?></td>
-                                                <td><?php echo $rows['total_price'] ?></td>
-                                                <td><?php echo $rows['total_quantity'] ?></td>
+                                                <td><?php echo $value['quantity'] ?></td>
+                                                <td><?php echo $value['price'] . '.000đ' ?></td>
                                                 <td><a href="javascript:void(0);"
-                                                            onClick="popUpWindow('detail_oder.php?restaurant_id=<?php echo htmlentities($rs_id);?>');"
+                                                            onClick="popUpWindow('detail_oder.php?restaurant_id=<?php echo $key ?>');"
                                                             title="Detail order">
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-primary">View</button></a></td>
                                             <tr>    
                                         <?php
-                                            }
+                                        
                                         }
                                         ?>
                                         </tbody>

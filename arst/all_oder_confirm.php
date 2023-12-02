@@ -123,10 +123,8 @@ session_start();
                                         class="table table-bordered table-striped">
                                         <thead class="thead-dark">
                                             <tr>
+                                                <th>Mã đơn hàng</th>
                                                 <th>Tên người dùng</th>
-                                                <th>Tên món</th>
-                                                <th>Số Lượng</th>
-                                                <th>Giá</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Tình trạng</th>
                                                 <th>Giao hàng</th>
@@ -137,7 +135,9 @@ session_start();
                                         </thead>
                                         <tbody>
                                             <?php
-												$sql = "SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id ORDER BY users_orders.date DESC";
+												$sql = "SELECT `order`.*, users.address, users.l_name, users.f_name FROM `order`
+                                                JOIN users ON `order`.u_id = users.u_id WHERE order.status = 'Đã giao hàng' 
+                                                ORDER BY `order`.id DESC";
 												$query=mysqli_query($db,$sql);
 												
 													if(!mysqli_num_rows($query) > 0 )
@@ -153,19 +153,14 @@ session_start();
                                                                                 
                                                                          <?php
                                                                          $status=$rows['status'];
-                                                                         if ($status !== "closed") {
-                                                                             continue;
-                                                                         }
-																					echo ' <tr>
-																					           <td>'.$rows['username'].'</td>
-																								<td>'.$rows['title'].'</td>
-																								<td>'.$rows['quantity'].'</td>
-																								<td>'.$rows['price'].'đ</td>
-																								<td>'.$rows['address'].'</td>';
-																								?>
+                                                                         echo ' <tr>
+                                                                         <td>#'. $rows['code'] .'</td>
+                                                                          <td>'. $rows['l_name'] .' '. $rows['f_name'] .'</td>
+                                                                          <td>'. $rows['address'] .'</td>';
+                                                                          ?>
                                                                         <?php 
 																			
-																			if($status==="closed")
+																			if($status==="Đã giao hàng")
 																				{
 																			?>
                                                                             <td> <button type="button"
@@ -197,20 +192,21 @@ session_start();
 																							echo '	<td>'.$rows['date'].'</td>';
 																							?>
                                             <td>
-                                                <a href="delete_orders.php?order_del=<?php echo $rows['o_id'];?>"
+                                            <a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-xs m-b-10" 
+                                            onClick="popUpWindow('detail_order.php?order_id=<?php echo $rows['id'] ?>&code=<?php echo $rows['code'] ?>');">
+                                            <i class="fa fa-bars" style="font-size:16px"></i></a>
+                                                <a href="delete_orders.php?order_del=<?php echo $rows['id'];?>"
                                                     onclick="return confirm('Are you sure?');"
                                                     class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i
-                                                        class="fa fa-trash-o"
-                                                        style="font-size:16px"></i></a>
+                                                        class="fa fa-trash-o" style="font-size:16px"></i></a>
+                                                
+													<a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"
+                                                    onClick="popUpWindow('order_update.php?order_id=<?php echo $rows['id'] ?>&code=<?php echo $rows['code'] ?>');">
+                                                        <i class="fa fa-edit"></i></a>
                                                 <?php
-																								echo '<a href="view_order.php?user_upd='.$rows['o_id'].'" " class="btn btn-info btn-flat btn-addon btn-sm m-b-10 m-l-5"><i class="fa fa-edit"></i></a>
-																									</td>
-																									</tr>';
-																					 
-																						
-																						
-																		}	
-														}
+		
+														}	
+													}
 												
 											
 											?>
@@ -238,6 +234,19 @@ session_start();
 
     </div>
 
+    <script language="javascript" type="text/javascript">
+    var popUpWin = 0;
+
+    function popUpWindow(URLStr, left, top, width, height) {
+        if (popUpWin) {
+            if (!popUpWin.closed) popUpWin.close();
+        }
+        popUpWin = open(URLStr, 'popUpWin',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' +
+            1000 + ',height=' + 1000 + ',left=' + left + ', top=' + top +
+            ',screenX=' + left + ',screenY=' + top + '');
+    }
+    </script>
     <script src="js/lib/jquery/jquery.min.js"></script>
     <script src="js/lib/bootstrap/js/popper.min.js"></script>
     <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
