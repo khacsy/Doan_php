@@ -48,6 +48,9 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
     }
 
     echo "<script>alert('Form Details Updated Successfully');</script>";
+    echo "<div style='text-align: center; margin-top: 50vh; transform: translateY(-50%);'>";
+    echo "<h1>Bạn đã cập nhật thành công</h1>";
+    echo "</div>";
     window.close();
     header("Location: all_orders.php");
 
@@ -58,7 +61,7 @@ if (strlen($_SESSION['user_id_restaurant']) == 0) {
     function f2() {
       window.close();
     }
-    ser
+  
 
     function f3() {
       window.print();

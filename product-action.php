@@ -6,6 +6,9 @@ if (!empty($_GET["action"])) {
 	switch ($_GET["action"]) {
 		case "add":
 			if (!empty($quantity)) {
+				if($quantity < 1) {
+					$quantity = 1;
+				}
 				$stmt = $db->prepare("SELECT * FROM dishes where d_id= ?");
 				$stmt->bind_param('i', $productId);
 				$stmt->execute();

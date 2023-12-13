@@ -11,8 +11,7 @@
                                 class="sr-only">(current)</span></a> </li>
                     <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Nhà Hàng <span
                                 class="sr-only"></span></a> </li>
-                    <li class="nav-item"> <a class="nav-link active" href="map.php">Map<span class="sr-only"></span></a>
-                    </li>
+                    
 
 
 

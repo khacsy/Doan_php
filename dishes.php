@@ -29,14 +29,14 @@
 									     $rows=mysqli_fetch_array($ress);                                  
                                             $_SESSION['id_rs'] = $_GET['res_id'];                                      
 										  ?>
-        <section class="inner-page-hero bg-image" data-image-src="images/img/dish.jpeg">
+        <section class="inner-page-hero bg-image" data-image-src="images/img/dish.jpeg" style="background-image: url('images/img/dish.jpeg');">
             <div class="profile">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12  col-md-4 col-lg-4 profile-img">
                             <div class="image-wrap">
                                 <figure>
-                                    <?php echo '<img src="admin/Res_img/'.$rows['image'].'" alt="Restaurant logo">'; ?>
+                                    <?php echo '<img src="arst/Res_img/'.$rows['image'].'" alt="Restaurant logo">'; ?>
                                 </figure>
                             </div>
                         </div>
@@ -136,7 +136,7 @@ $item_total = 0;
                             <div class="price-wrap text-xs-center">
                                 <p>Tổng Tiền</p>
                                 <h3 class="value">
-                                    <strong><?php echo $item_total." .000đ"; ?></strong>
+                                    <strong><?php echo $item_total.".000đ"; ?></strong>
                                 </h3>
                                 <p>Ưu đãi Free Ship</p>
                                 <a href="checkout.php?res_id=<?php echo $_GET['res_id'];?>&action=check"
@@ -200,7 +200,7 @@ $item_total = 0;
                                     <div class="col-xs-12 col-sm-12 col-lg-4 pull-right item-cart-info">
                                         <span class="price pull-left"><?php echo $product['price']; ?>
                                             đ</span>
-                                        <input class="b-r-0" type="text" name="quantity" style="margin-left:30px;"
+                                        <input class="b-r-0" type="text" name="quantity" style="margin-left:30px;" min="0"
                                             value="1" size="2" />
                                         <input type="submit" class="btn theme-btn" style="width:10rem;"
                                             value="Thêm vào giỏ hàng" />

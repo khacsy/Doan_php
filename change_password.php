@@ -45,7 +45,7 @@
                     // update password in database
                     $update_password_query = "UPDATE users SET password='" . md5($new_password) . "' WHERE u_id='" . $_SESSION['user_id'] . "'";
                     mysqli_query($db, $update_password_query);
-                    $success = "Password changed successfully!";
+                    $success = "Đã đổi mật khẩu thành công!";
                 } else {
                     $message = "New Password and Confirm Password do not match!";
                 }

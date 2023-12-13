@@ -174,7 +174,7 @@ and also iPads specifically.
 
         <!-- end:Top links -->
         <!-- start: Inner page hero -->
-        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg">
+        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg" style="background-image: url('images/img/res.jpeg');">
             <div class="container"> </div>
             <!-- end:Container -->
         </div>
@@ -233,128 +233,99 @@ and also iPads specifically.
                                 <table>
                                     <thead>
                                         <tr>
-
+<!-- 
                                             <th>Tên Món</th>
                                             <th>Số lượng</th>
                                             <th>Giá tiền</th>
                                             <th>Tình trạng</th>
                                             <th>Giao hàng</th>
                                             <th>Date</th>
+                                            <th>Action</th> -->
+                                            <th>Mã đơn hàng</th>
+                                            <th>Tên người dùng</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Tình trạng</th>
+                                            <th>Giao hàng</th>
+                                            <th>Reg-Date</th>
                                             <th>Action</th>
 
                                         </tr>
                                     </thead>
                                     <tbody>
 
-
-                                        <?php
-                                            // displaying current session user login orders
-                                            $query_res = mysqli_query($db, "select * from users_orders where u_id='" . $_SESSION['user_id'] . "'");
-                                            if (!mysqli_num_rows($query_res) > 0)
-                                            {
-                                                echo '<td colspan="6"><center>You have No orders Placed yet. </center></td>';
-                                            }
-                                            else
-                                            {
-
-                                                while ($row = mysqli_fetch_array($query_res))
-                                                {
-
-                                        ?>
-                                        <tr>
-                                            <td data-column="Item">
-                                                <?php echo $row['title']; ?>
-                                            </td>
-                                            <td data-column="Quantity">
-                                                <?php echo $row['quantity']; ?>
-                                            </td>
-                                            <td data-column="price">
-                                                <?php echo $row['price']; ?>đ
-                                            </td>
-
-                                            <td data-column="status">
-                                                <?php
-                                                            $status = $row['status'];
-                                                            if ($status == "" or $status == "NULL")
-                                                            {
-                                                ?>
-                                                <button type="button" class="btn btn-info"
-                                                    style="font-weight:bold;">Đang
-                                                    xét duyệt</button>
-                                                <?php
-                                                }
-                                                if ($status == "in process")
-                                                { ?>
-                                                <button type="button" class="btn btn-warning"><span
-                                                        class="fa fa-cog fa-spin" aria-hidden="true"></span>Đang
-                                                    vận
-                                                    chuyển!</button>
-                                                <?php
+                                    <?php
+                                    $id_user = $_SESSION['user_id'];
+												$sql = "SELECT `order`.*, users.address, users.l_name, users.f_name FROM `order`
+                                                JOIN users ON `order`.u_id = users.u_id WHERE users.u_id = '$id_user'
+                                                ORDER BY `order`.id DESC";
+												$query=mysqli_query($db,$sql);
+												
+													if(!mysqli_num_rows($query) > 0 )
+														{
+															echo '<td colspan="8"><center>No Orders</center></td>';
+														}
+													else
+														{				
+														while($rows=mysqli_fetch_array($query))
+															{
+                                                                $status=$rows['status'];
+                                                                if($status == null) {
+                                                                    $status = "Chờ xét duyệt";
                                                                 }
-                                                                if ($status == "closed")
-                                                                {
-                                                ?>
-                                                <button type="button" class="btn btn-success"><span
-                                                        class="fa fa-check-circle" aria-hidden="true">Đã
-                                                        giao
-                                                        hàng</button>
-                                                <?php
-                                                                }
-                                                ?>
-                                                <?php
-                                                                if ($status == "rejected")
-                                                                {
-                                                ?>
-                                                <button type="button" class="btn btn-danger"> <i
-                                                        class="fa fa-close"></i>Đã
-                                                    hủy</button>
-                                                <?php
-                                                                }
-                                                
-                                                if($status != NULL ){
-                                                    if($status!="closed") {
-                                                        if($status!="rejected") {
-                                                            if($status!="in process") {
-                                            ?>
-                                            <button type="button"
-                                                    class="btn btn-warning"><span
-                                                        class="fa fa-cog fa-spin"
-                                                        aria-hidden="true"></span>
-                                                    <?php echo $status ?></button>
+																				?>
+                                            <?php
+                                             
+                                             if ($status == "Đã giao hàng") {
+                                                 continue;
+                                             }
+																					echo ' <tr>
+																					           <td>#'. $rows['code'] .'</td>
+																								<td>'. $rows['l_name'] .' '. $rows['f_name'] .'</td>
+																								<td>'. $rows['address'] .'</td>';
+																								?>
                                             
                                             <?php
-                                                    }
-                                                }
-                                            }
+                                                if($status != NULL ){
+                                            ?>
+                                            <td> <button type="button" class="btn btn-warning"><span
+                                                        class="fa fa-cog fa-spin" aria-hidden="true"></span>
+                                                    <?php echo $status ?></button>
+                                            </td>
+                                            <?php
 												}
 																			
 											?>
-                                            </td>
                                             <?php 
-																			$ship = $row['ship'];
+																			$ship = $rows['ship'];
 																			if($ship == "1")
 																				{
 																		?>
-                                                                            <td> Nhận tại nhà hàng</td>
-                                                                        <?php 
+                                            <td> Nhận tại nhà hàng</td>
+                                            <?php 
 																			} else {
                                                                         ?>
-                                                                            <td> Giao tận tay khách hàng</td>
-                                                                        <?php 
+                                            <td> Giao tận tay khách hàng</td>
+                                            <?php 
 																			}
                                                                         ?>
-                                            <td data-column="Date">
-                                                <?php echo $row['date']; ?></td>
-                                            <td data-column="Action"> <a
-                                                    href="delete_orders.php?order_del=<?php echo $row['o_id']; ?>"
-                                                    onclick="return confirm('Are you sure you want to cancel your order?');"
-                                                    class="btn btn-danger btn-flat btn-addon btn-xs m-b-10"><i
-                                                        class="fa fa-trash-o" style="font-size:16px"></i></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                                    }
-                                                    } ?>
+                                            <?php																									
+												echo '	<td>'.$rows['date'].'</td>';
+											?>
+                                            <td>
+                                            <a href="javascript:void(0);" class="btn btn-info btn-flat btn-addon btn-xs m-b-10" 
+                                            onClick="popUpWindow('detail_order.php?order_id=<?php echo $rows['id'] ?>&code=<?php echo $rows['code'] ?>');">
+                                            <i class="fa fa-bars" style="font-size:16px"></i></a>
+
+											</td>
+											</tr>
+																					 
+																						
+                                             <?php			
+																		}	
+														}
+												
+											
+											?>
                                     </tbody>
                                 </table>
                             </div>
@@ -365,6 +336,19 @@ and also iPads specifically.
             </div>
     </div>
     </section>
+    <script language="javascript" type="text/javascript">
+    var popUpWin = 0;
+
+    function popUpWindow(URLStr, left, top, width, height) {
+        if (popUpWin) {
+            if (!popUpWin.closed) popUpWin.close();
+        }
+        popUpWin = open(URLStr, 'popUpWin',
+            'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,copyhistory=yes,width=' +
+            1000 + ',height=' + 1000 + ',left=' + left + ', top=' + top +
+            ',screenX=' + left + ',screenY=' + top + '');
+    }
+    </script>
     <?php
     include ("footer.php");
 ?>

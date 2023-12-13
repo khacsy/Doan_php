@@ -30,7 +30,7 @@
 
 </head>
 
-<body data-image-src="images/img/food1.jpg">
+<body data-image-src="images/img/food1.jpg" style="background-image: url('images/img/food1.jpg');">
     <?php
 include("connection/connect.php"); //INCLUDE CONNECTION
 error_reporting(0); 

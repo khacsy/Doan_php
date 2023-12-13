@@ -16,7 +16,7 @@ if (isset($_POST['submit'])) {
     $address = $_POST['address'];
 
     if (empty($c_name) || empty($res_name) || empty($email) || empty($phone) || empty($url) || empty($o_hr) || empty($c_hr) || empty($o_days) || empty($address)) {
-        $error = '<div class="alert alert-danger alert-dismissible fade show">
+        $error = '<div class="alert alert-danger alert-dismissible fade show custom-alart">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>All fields Must be Fillup!</strong>
                   </div>';
@@ -39,12 +39,12 @@ if (isset($_POST['submit'])) {
             $insert = mysqli_query($db, $sql);
             if ($insert == 1) {
                 move_uploaded_file($temp, $store);
-                $success = '<div class="alert alert-success alert-dismissible fade show">
+                $success = '<div class="alert alert-success alert-dismissible fade show custom-alart">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         New Restaurant Added Successfully.
                     </div>';
             } else {
-                    $error = '<div class="alert alert-danger alert-dismissible fade show">
+                    $error = '<div class="alert alert-danger alert-dismissible fade show custom-alart">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     Something went wrong. Please try again later.
                                 </div>';
@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
                 
         }
         else{
-            echo  '<div class="alert alert-danger alert-dismissible fade show">
+            echo  '<div class="alert alert-danger alert-dismissible fade show custom-alart">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <strong>bạn không có quyền thêm nhà hàng</strong>
             </div>';
@@ -77,7 +77,15 @@ if (isset($_POST['submit'])) {
     <link href="css/helper.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
+<style>
+    .custom-alart{
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
 
+</style>
 <body class="fix-header">
 
     <div class="preloader">

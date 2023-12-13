@@ -119,6 +119,7 @@ session_start();
                                                 <th>Địa chỉ</th>
                                                 <th>Tình trạng</th>
                                                 <th>Giao hàng</th>
+                                                <th>Thanh toán trước</th>
                                                 <th>Reg-Date</th>
                                                 <th>Action</th>
 
@@ -181,6 +182,7 @@ session_start();
                                             <?php 
 																			}
                                                                         ?>
+                                            <td><?php echo $rows['pay'] ?></td>
                                             <?php																									
 												echo '	<td>'.$rows['date'].'</td>';
 											?>

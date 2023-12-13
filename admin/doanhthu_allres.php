@@ -113,15 +113,18 @@ session_start();
                                                 if (isset($something[$restaurantId])) {
                                                     $quantity = $arrayDoanhThu[$rows['restaurant_id']]['quantity'];
                                                     $price = $arrayDoanhThu[$rows['restaurant_id']]['price'];
-                                                    $arrayDoanhThu[$rows['restaurant_id']] = [
-                                                        'quantity' => $quantity + $rows['quantity'],
-                                                        'price' => $price + $rows['price']
+                                                    $quantityNew = $quantity + $rows['quantity'];
+                                                    $arrayDoanhThu[$restaurantId] = [
+                                                        'quantity' => $quantityNew ,
                                                     ];
 
                                                 } else {
+
+                                                    $sqlCount = "select sum(quantity) as total_quantity from detail_order where restaurant_id = '$restaurantId'";
+                                                    $queryCount = mysqli_query($db, $sqlCount);
+                                                    $result = mysqli_fetch_assoc($queryCount);
                                                     $arrayDoanhThu[$restaurantId] = [
-                                                        'quantity' => $rows['quantity'],
-                                                        'price' => $rows['price']
+                                                        'quantity' => $result['total_quantity'],
                                                     ];
                                                 }
                                             }
@@ -134,7 +137,6 @@ session_start();
                                             <tr>
                                                 <th>Tên nhà hàng</th>
                                                 <th>Số lượng</th>
-                                                <th>Giá</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -149,7 +151,6 @@ session_start();
                                             <tr>
                                                 <td><?php echo $title ?></td>
                                                 <td><?php echo $value['quantity'] ?></td>
-                                                <td><?php echo $value['price'] . '.000đ' ?></td>
                                                 <td><a href="javascript:void(0);"
                                                             onClick="popUpWindow('detail_oder.php?restaurant_id=<?php echo $key ?>');"
                                                             title="Detail order">

@@ -11,7 +11,7 @@
 ?>
     <!-- /.navbar -->
     <!-- banner part starts -->
-    <section class="hero bg-image" data-image-src="images/img/food1.jpg">
+    <section class="hero bg-image" data-image-src="images/img/food1.jpg" style="background-image: url('images/img/food1.jpg');">
         <div class="hero-inner">
             <div class="container text-center hero-text font-white">
                 <h1>Koji Food</h1>
