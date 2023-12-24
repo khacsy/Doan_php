@@ -195,34 +195,7 @@ and also iPads specifically.
 
                         <div class="widget clearfix">
 
-                            <div class="widget-heading">
-                                <h3 class="widget-title text-dark">
-                                    Popular tags
-                                </h3>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="widget-body">
-                                <ul class="tags">
-                                    <li> <a href="#" class="tag">
-                                            Pizza
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Sendwich
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Sendwich
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Fish
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Desert
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Salad
-                                        </a> </li>
-                                </ul>
-                            </div>
+                           
                         </div>
 
                     </div>
@@ -275,9 +248,7 @@ and also iPads specifically.
 																				?>
                                             <?php
                                              
-                                             if ($status == "Đã giao hàng") {
-                                                 continue;
-                                             }
+                                             
 																					echo ' <tr>
 																					           <td>#'. $rows['code'] .'</td>
 																								<td>'. $rows['l_name'] .' '. $rows['f_name'] .'</td>

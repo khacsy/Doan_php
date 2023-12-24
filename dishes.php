@@ -230,46 +230,7 @@ $item_total = 0;
                     <div class="sidebar-wrap">
                         <div class="widget clearfix">
                             <!-- /widget heading -->
-                            <div class="widget-heading">
-                                <h3 class="widget-title text-dark">
-                                    Popular tags
-                                </h3>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="widget-body">
-                                <ul class="tags">
-                                    <li> <a href="#" class="tag">
-                                            Coupons
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Discounts
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Deals
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Amazon
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Ebay
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Fashion
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Shoes
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Kids
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Travel
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Hosting
-                                        </a> </li>
-                                </ul>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -418,7 +379,7 @@ $item_total = 0;
                                 <div class="col-xs-6 col-sm-4 col-lg-4">
                                     <div class="row no-gutter">
                                         <div class="col-xs-7">
-                                            <select class="form-control b-r-0" id="exampleSelect6">
+                                            <select class="form-contheme-bttrol b-r-0" id="exampleSelect6">
                                                 <option>Size SM</option>
                                                 <option>Size LG</option>
                                                 <option>Size XL</option>

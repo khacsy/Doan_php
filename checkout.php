@@ -16,7 +16,7 @@ if (empty($_SESSION["user_id"])) {
     if ($_POST['submit']) {
     $code = random_int(1000, 9999);
 
-    $sqlOrder = "insert into `order` (u_id,code,ship,pay) values ('" . $_SESSION["user_id"] . "','" . $code . "','" . $_POST['ship'] . "','" . $_POST['pay'] . "')";
+    $sqlOrder = "insert into `order` (u_id,code,ship,pay,address_oder) values ('" . $_SESSION["user_id"] . "','" . $code . "','" . $_POST['ship'] . "','" . $_POST['pay'] . "','" . $_POST['address_oder'] . "')";
     $queryOrder = mysqli_query($db, $sqlOrder);
     $orderId = mysqli_insert_id($db);
     foreach ($_SESSION["cart_item"] as $item) {
@@ -308,6 +308,14 @@ if (empty($_SESSION["user_id"])) {
                                                                     <option value="Thanh toán 50%">Thanh toán 50%</option>
                                                                     <option value="Thanh toán 75%">Thanh toán 75%</option>
                                                                 </select></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    Địa chỉ giao hàng
+                                                                </td>
+                                                                <td>
+                                                                    <textarea required name="address_oder" id="" cols="30" rows="3"></textarea>
+                                                                </td>
                                                             </tr>
                                                            
                                                             

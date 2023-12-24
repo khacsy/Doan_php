@@ -144,7 +144,7 @@ if (isset($_GET['key'])) {
                             <div class="col-sm-12 col-md-12 col-lg-8 text-xs-center text-sm-left">
                                 <div class="entry-logo">
                                     <a class="img-fluid" href="dishes.php?res_id=<?php echo $rs_id; ?>"><img
-                                            src="admin/Res_img/<?php echo $storeRow['image']; ?>" alt="Food logo"></a>
+                                            src="arst/Res_img/<?php echo $storeRow['image']; ?>" alt="Food logo"></a>
                                 </div>
                                 <div class="entry-dscr">
                                     <h5><a

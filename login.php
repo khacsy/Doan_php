@@ -54,7 +54,7 @@ if(isset($_POST['submit']))   // neu ma button submit thi
 	                            } 
 							else
 							    {
-                                      	$message = "Invalid Username or Password!"; 
+                                      	$message = "Bạn không thể đăng nhập!"; 
                                 }
 	 }
 	

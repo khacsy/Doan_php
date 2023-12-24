@@ -24,7 +24,8 @@
         </div>
         <!-- end:Top links -->
         <!-- start: Inner page hero -->
-        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg" style="background-image: url('images/img/res.jpeg');">
+        <div class="inner-page-hero bg-image" data-image-src="images/img/res.jpeg"
+            style="background-image: url('images/img/res.jpeg');">
             <div class="container"> </div>
             <!-- end:Container -->
         </div>
@@ -41,34 +42,7 @@
                     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-3">
                         <div class="widget clearfix">
                             <!-- /widget heading -->
-                            <div class="widget-heading">
-                                <h3 class="widget-title text-dark">
-                                    Popular tags
-                                </h3>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="widget-body">
-                                <ul class="tags">
-                                    <li> <a href="#" class="tag">
-                                            Pizza
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Sendwich
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Sendwich
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Fish
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Desert
-                                        </a> </li>
-                                    <li> <a href="#" class="tag">
-                                            Salad
-                                        </a> </li>
-                                </ul>
-                            </div>
+
                         </div>
                         <!-- end:Widget -->
                     </div>

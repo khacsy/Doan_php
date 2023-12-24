@@ -129,6 +129,7 @@ session_start();
                                                 <th>Tình trạng</th>
                                                 <th>Giao hàng</th>
                                                 <th>Thanh toán trước</th>
+                                                <th>Địa chỉ giao hàng</th>
                                                 <th>Reg-Date</th>
                                                 <th>Action</th>
 
@@ -190,6 +191,7 @@ session_start();
 																			}
                                                                         ?>
                                                                         <td><?php echo $rows['pay'] ?></td>
+                                                                        <td><?php echo $rows['address_oder'] ?></td>
                                                                          <?php																									
 																							echo '	<td>'.$rows['date'].'</td>';
 																							?>
